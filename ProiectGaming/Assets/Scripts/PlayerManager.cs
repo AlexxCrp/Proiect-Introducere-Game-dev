@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public float HP = 1000;
+    public float HP = 1000f;
+    public Healthbar healthbar = new();
     public float maxSpeed = 3.4f;
     public float jumpHeight = 6.5f;
     public float gravityScale = 1.5f;
@@ -126,5 +127,6 @@ public class PlayerManager : MonoBehaviour
 
         // Apply movement velocity
         playerRigidBody.velocity = new Vector2((moveDirection) * maxSpeed, playerRigidBody.velocity.y);
+
     }
 }
