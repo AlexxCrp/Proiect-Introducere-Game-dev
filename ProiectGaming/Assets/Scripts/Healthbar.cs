@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour
 {
-    private float _scale = 0.3f;
+    //private float _scale = 0.3f;
 
     public Slider slider;
     public Gradient gradient;
