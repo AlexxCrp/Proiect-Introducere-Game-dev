@@ -14,10 +14,10 @@ public class Healthbar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var healthbarTransform = base.transform;
-        healthbarTransform.localScale = Vector3.one * _scale;
+        //var healthbarTransform = base.transform;
+        //healthbarTransform.localScale = Vector3.one * _scale;
 
-        SetMaxHealth(100);
+        SetMaxHealth(1000);
 
     }
 
