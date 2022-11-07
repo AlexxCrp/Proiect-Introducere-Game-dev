@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public float HP = 1000f;
-    public Healthbar healthbar = new();
+    public Healthbar healthbar;
     public float maxSpeed = 3.4f;
     public float jumpHeight = 6.5f;
     public float gravityScale = 1.5f;
@@ -25,6 +25,7 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        healthbar.SetMaxHealth(HP);
         playerTransform = base.transform;
         playerRigidBody = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<CapsuleCollider2D>();
@@ -102,6 +103,9 @@ public class PlayerManager : MonoBehaviour
         {
             mainCamera.transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, cameraPos.z);
         }
+
+        healthbar.SetHealth(HP);
+
     }
 
     void FixedUpdate()
