@@ -18,7 +18,7 @@ public class PlayerManager : MonoBehaviour
     Rigidbody2D playerRigidBody;
     CapsuleCollider2D playerCollider;
     Transform playerTransform;
-    //public Animator animator; WILL BE USED FOR ANIMATIONS AFTER DECIDING ON SPRITES, UNUSED FOR NOW
+    public Animator animator;
     private void Awake()
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -50,7 +50,7 @@ public class PlayerManager : MonoBehaviour
         {
             moveDirection = 0;
             //Animator
-            //animator.SetFloat("Speed", 0);
+            animator.SetFloat("Speed", 0);
         }
 
         // Movement controls
@@ -87,18 +87,18 @@ public class PlayerManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, jumpHeight);
-            //animator.SetBool("isJumping", true);
+            animator.SetBool("isJumping", true);
 
         }
 
-        //if (isGrounded)
-        //{
-        //    animator.SetBool("isJumping", false);
-        //}
-        //else
-        //{
-        //    animator.SetBool("isJumping", true);
-        //}
+        if (isGrounded)
+        {
+            animator.SetBool("isJumping", false);
+        }
+        else
+        {
+            animator.SetBool("isJumping", true);
+        }
 
 
         // Camera follow
@@ -106,7 +106,7 @@ public class PlayerManager : MonoBehaviour
         {
             mainCamera.transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, cameraPos.z);
         }
-
+        print(isGrounded);
         healthbar.SetHealth(HP);
     }
 
@@ -134,6 +134,6 @@ public class PlayerManager : MonoBehaviour
         moveDirection = value;
 
         //Animator
-        //animator.SetFloat("Speed", 10);
+        animator.SetFloat("Speed", 10);
     }
 }

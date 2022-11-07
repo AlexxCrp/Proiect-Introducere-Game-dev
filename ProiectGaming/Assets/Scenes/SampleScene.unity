@@ -821,9 +821,46 @@ MonoBehaviour:
   HP: 1000
   healthbar: {fileID: 613466943}
   maxSpeed: 3.4
-  jumpHeight: 6.5
+  jumpHeight: 12
   gravityScale: 1.5
   facingRight: 1
+  animator: {fileID: 681586812}
+--- !u!70 &681586811
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681586805}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.023275709, y: -0.12078209}
+  m_Size: {x: 0.2534047, y: 0.55690604}
+  m_Direction: 0
+--- !u!95 &681586812
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681586805}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 76459b61e98e5364cb31bb10b6704b61, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &682046496
 GameObject:
   m_ObjectHideFlags: 0
