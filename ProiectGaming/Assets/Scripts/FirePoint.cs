@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//ignore this class for now
 public class FirePoint : MonoBehaviour
 {
     public Transform turret;

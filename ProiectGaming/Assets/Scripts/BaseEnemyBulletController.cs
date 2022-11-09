@@ -12,6 +12,11 @@ public class BaseEnemyBulletController : MonoBehaviour
         rb.velocity = transform.right * speed;
     }
 
+    public virtual void BulletSpecialEffect()
+    {
+
+    }
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag != "Enemy")
@@ -19,6 +24,7 @@ public class BaseEnemyBulletController : MonoBehaviour
             PlayerManager character = collider.GetComponent<PlayerManager>();
             if (character != null)
             {
+                BulletSpecialEffect();
                 character.TakeDamage(damage);
             }
             if (collider.gameObject.tag != "Enemy")

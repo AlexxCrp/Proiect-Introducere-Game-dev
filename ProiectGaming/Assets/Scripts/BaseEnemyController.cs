@@ -7,74 +7,49 @@ public class BaseEnemyController : MonoBehaviour
     public float HP = 1000;
     public SpriteRenderer sprite;
     public float range;
-    private Transform target;
+    public GameObject gun;
     public Transform firePoint;
     public GameObject bullet;
     public float fireRate;
-    // public Animator animator;
+    public Animator animator;
+    public float flashRedTime;
 
-    bool canShoot = true;
-    bool isDetected = false;
-
+    float lastAttackTime = 0f;
     Vector2 direction;
+    Transform target;
 
-    public GameObject gun;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        target = GameObject.FindWithTag("Player").GetComponent<Transform>();
-    }
-
-    // Update is called once per frame
     void Update()
     {
+        //cast ray to player if in range of enemy
+        //while ray is cast shoot
+        //there are easier methods to just shoot when player is in range, using colliders,
+        //but we'll be keeping this code because some turrets will aim at players
+        //and in those cases a ray is a good solution
 
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
-
         Vector2 targetPosition = target.position;
-
         direction = targetPosition - (Vector2)transform.position;
-
         RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, direction, range);
 
-        if (rayInfo)
+        if (rayInfo && Time.time - lastAttackTime >= fireRate)
         {
-            if (!isDetected)
-            {
-                isDetected = true;
-                //animator.SetBool("isAgroed", true);
-            }
-            else
-            {
-                // animator.SetBool("isAgroed", false);
-                isDetected = false;
-            }
-        }
-
-        if (isDetected)
-        {
-            //gun.transform.up = direction * -1;
-            if (canShoot)
-            {
-                StartCoroutine(Shoot());
-            }
+            Shoot();
         }
     }
 
     private void OnDrawGizmosSelected()
     {
+        //used to see the range in scene view
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
-    IEnumerator Shoot()
+    private void Shoot()
     {
-        canShoot = false;
         Instantiate(bullet, firePoint.position, firePoint.rotation);
-        yield return new WaitForSecondsRealtime(fireRate);
-        canShoot = true;
+        lastAttackTime = Time.time;
     }
 
+    //will be used by player bullets
     public void TakeDamage(float damage)
     {
         HP -= damage;
@@ -88,8 +63,7 @@ public class BaseEnemyController : MonoBehaviour
     public IEnumerator FlashRed()
     {
         sprite.color = Color.red;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(flashRedTime);
         sprite.color = Color.white;
-
     }
 }
