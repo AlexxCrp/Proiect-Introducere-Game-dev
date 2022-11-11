@@ -5,10 +5,10 @@ using UnityEngine;
 public class ShooterBehavior : MonoBehaviour
 {
     private Camera _mainCamera;
-
     private Vector3 _mousePos;
     public PlayerManager _player;
     public float speed = 15f;
+    private bool gunFacingRight = true;
 
     // Start is called before the first frame update
     void Start()
@@ -34,5 +34,17 @@ public class ShooterBehavior : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed * Time.deltaTime);
+
+        if (_player.facingRight && !gunFacingRight)
+        {
+            transform.Rotate(0f, 180f, 0f);
+            gunFacingRight = true;
+        }
+
+        if (!_player.facingRight && gunFacingRight)
+        {
+            transform.Rotate(0f, 180f, 0f);
+            gunFacingRight = false;
+        }
     }
 }
