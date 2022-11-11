@@ -9,7 +9,7 @@ public class ShooterBehavior : MonoBehaviour
     public PlayerManager _player;
     public float speed = 15f;
     private bool gunFacingRight = true;
-
+    public GameObject firePoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,15 +35,16 @@ public class ShooterBehavior : MonoBehaviour
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed * Time.deltaTime);
 
+
         if (_player.facingRight && !gunFacingRight)
         {
-            transform.Rotate(0f, 180f, 0f);
+            firePoint.transform.Rotate(0f, 180f, 0f);
             gunFacingRight = true;
         }
 
         if (!_player.facingRight && gunFacingRight)
         {
-            transform.Rotate(0f, 180f, 0f);
+            firePoint.transform.Rotate(0f, 180f, 0f);
             gunFacingRight = false;
         }
     }
