@@ -401,6 +401,10 @@ PrefabInstance:
       propertyPath: bullet
       value: 
       objectReference: {fileID: 3877054343885831360, guid: 0886e5b054822c841a9e38c021d55e7e, type: 3}
+    - target: {fileID: 6536819634715104829, guid: 9cffdaa25d61c454594c3b9d57ba4d2f, type: 3}
+      propertyPath: fireCooldown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6536819634715104831, guid: 9cffdaa25d61c454594c3b9d57ba4d2f, type: 3}
       propertyPath: m_RootOrder
       value: 1

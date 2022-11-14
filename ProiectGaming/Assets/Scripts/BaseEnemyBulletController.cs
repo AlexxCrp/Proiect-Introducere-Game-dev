@@ -19,18 +19,16 @@ public class BaseEnemyBulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag != "Enemy")
+        if (collider.gameObject.tag == "Enemy")
         {
-            PlayerManager character = collider.GetComponent<PlayerManager>();
-            if (character != null)
-            {
-                BulletSpecialEffect();
-                character.TakeDamage(damage);
-            }
-            if (collider.gameObject.tag != "Enemy")
-            {
-                Destroy(gameObject);
-            }
+            return;
         }
+        PlayerManager character = collider.GetComponent<PlayerManager>();
+        if (character != null)
+        {
+            BulletSpecialEffect();
+            character.TakeDamage(damage);
+        }
+        Destroy(gameObject);
     }
 }

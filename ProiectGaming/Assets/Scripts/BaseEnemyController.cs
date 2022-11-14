@@ -10,7 +10,7 @@ public class BaseEnemyController : MonoBehaviour
     public GameObject gun;
     public Transform firePoint;
     public GameObject bullet;
-    public float fireRate;
+    public float fireCooldown;
     public Animator animator;
     public float flashRedTime;
 
@@ -31,7 +31,7 @@ public class BaseEnemyController : MonoBehaviour
         direction = targetPosition - (Vector2)transform.position;
         RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, direction, range);
 
-        if (rayInfo && Time.time - lastAttackTime >= fireRate)
+        if (rayInfo && Time.time - lastAttackTime >= fireCooldown)
         {
             Shoot();
         }
