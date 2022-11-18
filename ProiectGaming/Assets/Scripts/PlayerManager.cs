@@ -106,7 +106,6 @@ public class PlayerManager : MonoBehaviour
         {
             mainCamera.transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, cameraPos.z);
         }
-        print(isGrounded);
         healthbar.SetHealth(HP);
     }
 
@@ -135,5 +134,10 @@ public class PlayerManager : MonoBehaviour
 
         //Animator
         animator.SetFloat("Speed", 10);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        HP -= damage;
     }
 }
