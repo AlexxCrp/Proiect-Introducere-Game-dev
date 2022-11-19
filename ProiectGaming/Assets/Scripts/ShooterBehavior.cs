@@ -10,10 +10,14 @@ public class ShooterBehavior : MonoBehaviour
     public float speed = 15f;
     private bool gunFacingRight = true;
     public GameObject firePoint;
+    private Bullet currentBullet = new();
+    [SerializeField] private Bullet.BulletType bulletType = Bullet.BulletType.Basic;
+
     // Start is called before the first frame update
     void Start()
     {
         _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        currentBullet.bulletType = bulletType;
     }
 
     // Update is called once per frame
@@ -47,5 +51,10 @@ public class ShooterBehavior : MonoBehaviour
             firePoint.transform.Rotate(0f, 180f, 0f);
             gunFacingRight = false;
         }
+    }
+
+    public Bullet getCurrentBullet()
+    {
+        return currentBullet;
     }
 }
