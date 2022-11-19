@@ -19,7 +19,7 @@ public class BaseEnemyBulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Enemy")
+        if (collider.gameObject.CompareTag("Enemy"))
         {
             return;
         }
