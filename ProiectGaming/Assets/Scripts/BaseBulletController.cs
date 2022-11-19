@@ -5,23 +5,20 @@ using UnityEngine;
 
 public class BaseBulletController : MonoBehaviour
 {
-    [SerializeField] private ShooterBehavior shooter;
     public Rigidbody2D _rb;
+    private Bullet _bullet;
 
     // Start is called before the first frame update
     void Awake()
     {
+        _bullet = BulletManager.Instance.GetBullet();
         _rb = gameObject.GetComponent<Rigidbody2D>();
-        _rb.velocity = transform.right * shooter.getCurrentBullet().GetSpeed();
-    }
-
-    public virtual void BulletSpecialEffect()
-    {
+        _rb.velocity = transform.right * _bullet.Speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("Player"))
+        if (collider.gameObject.CompareTag("Player") || collider.gameObject.CompareTag("Bullet"))
         {
             return;
         }
@@ -29,8 +26,9 @@ public class BaseBulletController : MonoBehaviour
         BaseEnemyController enemy = collider.GetComponent<BaseEnemyController>();
         if (enemy != null)
         {
-            BulletSpecialEffect();
-            enemy.TakeDamage(shooter.getCurrentBullet().GetDamage());
+            enemy.TakeDamage(_bullet.Damage);
+            _bullet.ActiveEffect();
+            _bullet.PassiveEffect();
         }
 
         Destroy(gameObject);

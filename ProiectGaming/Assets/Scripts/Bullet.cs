@@ -6,41 +6,17 @@ using Object = UnityEngine.Object;
 
 public class Bullet
 {
-    public enum BulletType
+    public float Damage { get; set; } = 100f;
+
+    public float FireRate { get; set; } = 0.35f;
+
+    public float Speed { get; set; } = 20f;
+
+    public virtual void PassiveEffect()
     {
-        Basic
     }
 
-    private Dictionary<BulletType, Dictionary<String, float>> _typeToProperties = new()
+    public virtual void ActiveEffect()
     {
-        {
-            BulletType.Basic,
-            new Dictionary<string, float> { { "fireRate", 0.35f }, { "damage", 100f }, { "speed", 20f } }
-        }
-    };
-
-    public BulletType bulletType;
-
-    public Object GetPrefab()
-    {
-        switch (bulletType)
-        {
-            default: return BulletAssets.Instance.BasicPref;
-        }
-    }
-
-    public float GetDamage()
-    {
-        return _typeToProperties[bulletType]["damage"];
-    }
-
-    public float GetFireRate()
-    {
-        return _typeToProperties[bulletType]["fireRate"];
-    }
-
-    public float GetSpeed()
-    {
-        return _typeToProperties[bulletType]["speed"];
     }
 }

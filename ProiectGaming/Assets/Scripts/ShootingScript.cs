@@ -5,8 +5,6 @@ using UnityEngine;
 public class ShootingScript : MonoBehaviour
 {
     public Transform firePoint;
-    [SerializeField]
-    private ShooterBehavior shooter;
 
     bool isPressed = false;
     bool canShoot = true;
@@ -28,15 +26,13 @@ public class ShootingScript : MonoBehaviour
         {
             isPressed = false;
         }
-
-
     }
 
     IEnumerator Shoot()
     {
         canShoot = false;
-        Instantiate(shooter.getCurrentBullet().GetPrefab(), firePoint.position, firePoint.rotation);
-        yield return new WaitForSecondsRealtime(shooter.getCurrentBullet().GetFireRate());
+        Instantiate(BulletManager.Instance.GetPrefab(), firePoint.position, firePoint.rotation);
+        yield return new WaitForSecondsRealtime(BulletManager.Instance.GetBullet().FireRate);
         canShoot = true;
     }
 }

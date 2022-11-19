@@ -13,11 +13,11 @@ public class BulletAssets : MonoBehaviour
 
     public Object BasicPref;
 
-    public Bullet.BulletType getBullet(int index)
+    public BulletManager.BulletType getBullet(int index)
     {
         switch (index)
         {
-            default: return Bullet.BulletType.Basic;
+            default: return BulletManager.BulletType.Basic;
         }
     }
 }
