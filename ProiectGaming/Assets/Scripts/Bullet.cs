@@ -6,10 +6,9 @@ public class Bullet
 
     public float FireRate { get; set; } = 0.35f;
 
-    public float Speed { get; set; } = 20f;
-    public String CollisionAnimation = "BasicCollisionAnimation";
+    public float Speed { get; set; } = 5f;
 
-    // Passive effect occurs on shoot
+    // Passive effect triggers on each shot
     public virtual void PassiveEffect()
     {
     }
@@ -19,7 +18,7 @@ public class Bullet
     {
     }
     
-    public virtual void OnHitEffect()
+    public virtual void OnHitEffect(BaseEnemyController enemy)
     {
     }
 }
