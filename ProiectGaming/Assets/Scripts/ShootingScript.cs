@@ -32,6 +32,7 @@ public class ShootingScript : MonoBehaviour
     {
         canShoot = false;
         Instantiate(BulletManager.Instance.GetPrefab(), firePoint.position, firePoint.rotation);
+        BulletManager.Instance.GetBullet().PassiveEffect();
         yield return new WaitForSecondsRealtime(BulletManager.Instance.GetBullet().FireRate);
         canShoot = true;
     }

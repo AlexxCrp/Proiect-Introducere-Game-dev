@@ -1,8 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Object = UnityEngine.Object;
 
 public class Bullet
 {
@@ -11,12 +7,19 @@ public class Bullet
     public float FireRate { get; set; } = 0.35f;
 
     public float Speed { get; set; } = 20f;
+    public String CollisionAnimation = "BasicCollisionAnimation";
 
+    // Passive effect occurs on shoot
     public virtual void PassiveEffect()
     {
     }
 
+    // Active effect occurs on active skill key press
     public virtual void ActiveEffect()
+    {
+    }
+    
+    public virtual void OnHitEffect()
     {
     }
 }

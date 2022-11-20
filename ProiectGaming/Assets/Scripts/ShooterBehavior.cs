@@ -15,8 +15,6 @@ public class ShooterBehavior : MonoBehaviour
     void Start()
     {
         _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-
-        BulletManager.Instance.bulletType = BulletManager.BulletType.Basic;
     }
 
     // Update is called once per frame

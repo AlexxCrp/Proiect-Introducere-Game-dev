@@ -7,6 +7,7 @@ public class BaseBulletController : MonoBehaviour
 {
     public Rigidbody2D _rb;
     private Bullet _bullet;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Awake()
@@ -27,10 +28,11 @@ public class BaseBulletController : MonoBehaviour
         if (enemy != null)
         {
             enemy.TakeDamage(_bullet.Damage);
-            _bullet.ActiveEffect();
-            _bullet.PassiveEffect();
+            _bullet.OnHitEffect();
+         Debug.Log("Bullet Hit");   
         }
-
+        
+        // anim.Play(_bullet.CollisionAnimation);
         Destroy(gameObject);
     }
 }

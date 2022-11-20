@@ -9,7 +9,8 @@ public class BulletManager: MonoBehaviour
 {
     public enum BulletType
     {
-        Basic
+        Basic,
+        Waveform
     }
 
     public BulletType bulletType;
@@ -22,6 +23,7 @@ public class BulletManager: MonoBehaviour
     }
 
     public Object BasicPrefab;
+    public Object WaveformPrefab;
 
     public Bullet GetBullet()
     {
@@ -30,6 +32,8 @@ public class BulletManager: MonoBehaviour
             default:
             case BulletType.Basic:
                 return new Bullet();
+            case BulletType.Waveform:
+                return new BulletWaveform();
         }
     }
 
@@ -38,7 +42,8 @@ public class BulletManager: MonoBehaviour
         switch (bulletType)
         {
             default:
-            case BulletType.Basic: return BasicPrefab;    
+            case BulletType.Basic: return BasicPrefab;   
+            case BulletType.Waveform: return WaveformPrefab;
         }
     }
 }
