@@ -5,8 +5,6 @@ using UnityEngine;
 public class ShootingScript : MonoBehaviour
 {
     public Transform firePoint;
-    public GameObject bullet;
-    public float fireRate = 0.35f;
 
     bool isPressed = false;
     bool canShoot = true;
@@ -28,15 +26,14 @@ public class ShootingScript : MonoBehaviour
         {
             isPressed = false;
         }
-
-
     }
 
     IEnumerator Shoot()
     {
         canShoot = false;
-        Instantiate(bullet, firePoint.position, firePoint.rotation);
-        yield return new WaitForSecondsRealtime(fireRate);
+        Instantiate(BulletManager.Instance.GetPrefab(), firePoint.position, firePoint.rotation);
+        BulletManager.Instance.GetBullet().PassiveEffect();
+        yield return new WaitForSecondsRealtime(BulletManager.Instance.GetBullet().FireRate);
         canShoot = true;
     }
 }

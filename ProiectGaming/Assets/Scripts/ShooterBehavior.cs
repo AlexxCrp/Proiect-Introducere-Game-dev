@@ -10,6 +10,7 @@ public class ShooterBehavior : MonoBehaviour
     public float speed = 15f;
     private bool gunFacingRight = true;
     public GameObject firePoint;
+
     // Start is called before the first frame update
     void Start()
     {

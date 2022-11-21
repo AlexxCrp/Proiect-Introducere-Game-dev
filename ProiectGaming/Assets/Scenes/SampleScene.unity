@@ -123,6 +123,27 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &354828423 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6536819634715104825, guid: 9cffdaa25d61c454594c3b9d57ba4d2f, type: 3}
+  m_PrefabInstance: {fileID: 1886821430}
+  m_PrefabAsset: {fileID: 0}
+--- !u!70 &354828428
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354828423}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.009596109, y: -0.076768994}
+  m_Size: {x: 0.34403872, y: 0.58161545}
+  m_Direction: 0
 --- !u!1 &402886324
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,8 +441,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1549654299}
-  bullet: {fileID: 7302509977620816301, guid: 0ceed56b54d7c4e45b73abe2b4807664, type: 3}
-  fireRate: 0.35
+--- !u!114 &1549654303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549654298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efada622c9bce9048bde6cc0f134f3d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletType: 2
+  BasicPrefab: {fileID: 7953003389219205477, guid: 0ceed56b54d7c4e45b73abe2b4807664, type: 3}
+  WaveformPrefab: {fileID: 156708393733397361, guid: 8bdfbbed1427bd44dabec92f29fad9d1, type: 3}
+  CrossedPrefab: {fileID: 8596194199643882931, guid: 914467975f505934fafc4de24a12e4aa, type: 3}
 --- !u!1001 &1886821430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -432,6 +467,10 @@ PrefabInstance:
     - target: {fileID: 6536819634715104825, guid: 9cffdaa25d61c454594c3b9d57ba4d2f, type: 3}
       propertyPath: m_Name
       value: EggTurret
+      objectReference: {fileID: 0}
+    - target: {fileID: 6536819634715104828, guid: 9cffdaa25d61c454594c3b9d57ba4d2f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6536819634715104829, guid: 9cffdaa25d61c454594c3b9d57ba4d2f, type: 3}
       propertyPath: bullet
@@ -485,7 +524,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6536819634715104828, guid: 9cffdaa25d61c454594c3b9d57ba4d2f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9cffdaa25d61c454594c3b9d57ba4d2f, type: 3}
 --- !u!1001 &3130259637803677556
 PrefabInstance:

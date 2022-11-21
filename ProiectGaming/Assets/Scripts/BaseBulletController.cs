@@ -1,41 +1,36 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseBulletController : MonoBehaviour
 {
-    public float damage = 50;
-    public float speed = 20f;
-
     public Rigidbody2D _rb;
+    private Bullet _bullet;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        _bullet = BulletManager.Instance.GetBullet();
         _rb = gameObject.GetComponent<Rigidbody2D>();
-        _rb.velocity = transform.right * speed;
-    }
-
-    public virtual void BulletSpecialEffect()
-    {
+        _rb.velocity = transform.right * _bullet.Speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("Player"))
+        if (collider.gameObject.CompareTag("Player") || collider.gameObject.CompareTag("Bullet"))
         {
             return;
         }
 
         BaseEnemyController enemy = collider.GetComponent<BaseEnemyController>();
-        Debug.Log("Enemy: " + enemy.HP);
         if (enemy != null)
         {
-            BulletSpecialEffect();
-            enemy.TakeDamage(damage);
-            Debug.Log(enemy.HP);
+            enemy.TakeDamage(_bullet.Damage);
+            _bullet.OnHitEffect(enemy);
         }
-
+        
+        // anim.Play(_bullet.CollisionAnimation);
         Destroy(gameObject);
     }
 }
