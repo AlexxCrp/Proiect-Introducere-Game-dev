@@ -11,3 +11,4 @@ Proiectul pentru nota finala la cursul de Introducere in dezvoltarea jocurilor p
 ## Reviews
 
  - [Review 1](https://docs.google.com/document/d/11rq_-0QwGpwbbv5Y9i327kma62qen69xUaoo7rejP7U/edit#)
+ - [Review 2](https://docs.google.com/document/d/1e5GKyThRfg73Fjb33PmOHDqjlo_YOTI-ANFFGpUueJ4/edit#)
