@@ -123,27 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &354828423 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6536819634715104825, guid: 9cffdaa25d61c454594c3b9d57ba4d2f, type: 3}
-  m_PrefabInstance: {fileID: 1886821430}
-  m_PrefabAsset: {fileID: 0}
---- !u!70 &354828428
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 354828423}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.009596109, y: -0.076768994}
-  m_Size: {x: 0.34403872, y: 0.58161545}
-  m_Direction: 0
 --- !u!1 &402886324
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,6 +525,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3130259638485239553, guid: 2f0416c6e741bfc43a049e29a606d355, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3130259638485239565, guid: 2f0416c6e741bfc43a049e29a606d355, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -590,9 +573,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8126316005723239901, guid: 2f0416c6e741bfc43a049e29a606d355, type: 3}
-      propertyPath: _player
-      value: 
-      objectReference: {fileID: 868041260}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f0416c6e741bfc43a049e29a606d355, type: 3}
