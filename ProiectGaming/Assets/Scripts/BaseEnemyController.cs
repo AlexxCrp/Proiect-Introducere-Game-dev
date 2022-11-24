@@ -20,20 +20,16 @@ public class BaseEnemyController : MonoBehaviour
 
     void Update()
     {
-        //cast ray to player if in range of enemy
-        //while ray is cast shoot
-        //there are easier methods to just shoot when player is in range, using colliders,
-        //but we'll be keeping this code because some turrets will aim at players
-        //and in those cases a ray is a good solution
-
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
         Vector2 targetPosition = target.position;
         direction = targetPosition - (Vector2)transform.position;
         RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, direction, range);
 
-        if (rayInfo && Time.time - lastAttackTime >= fireCooldown)
+        if (rayInfo)
         {
-            Shoot();
+            EnemyAbility(target, animator);
+            if(Time.time - lastAttackTime >= fireCooldown)
+                Shoot();
         }
     }
 
@@ -41,6 +37,12 @@ public class BaseEnemyController : MonoBehaviour
     {
         //used to see the range in scene view
         Gizmos.DrawWireSphere(transform.position, range);
+    }
+
+    public virtual void EnemyAbility(Transform target, Animator animator)
+    {
+
+
     }
 
     private void Shoot()
