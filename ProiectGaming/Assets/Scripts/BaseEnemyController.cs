@@ -17,13 +17,17 @@ public class BaseEnemyController : MonoBehaviour
     float lastAttackTime = 0f;
     Vector2 direction;
     Transform target;
-
+    int layerMask;
+    private void Start()
+    {
+        layerMask = LayerMask.GetMask("Player");
+    }
     void Update()
     {
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
         Vector2 targetPosition = target.position;
         direction = targetPosition - (Vector2)transform.position;
-        RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, direction, range);
+        RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, direction, range, layerMask);
 
         if (rayInfo)
         {
@@ -60,6 +64,8 @@ public class BaseEnemyController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        Debug.Log("Enemy took damage: " + damage);
     }
 
     public IEnumerator FlashRed()
