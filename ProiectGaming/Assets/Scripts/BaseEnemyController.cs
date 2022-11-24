@@ -11,7 +11,7 @@ public class BaseEnemyController : MonoBehaviour
     public Transform firePoint;
     public GameObject bullet;
     public float fireCooldown;
-    public Animator animator;
+    public Animator animatorCop;
     public float flashRedTime;
 
     float lastAttackTime = 0f;
@@ -35,16 +35,24 @@ public class BaseEnemyController : MonoBehaviour
         direction = targetPosition - (Vector2)transform.position;
         RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, direction, range, layerMask);
 
-        if (rayInfo && Time.time - lastAttackTime >= fireCooldown)
+        if (rayInfo)
         {
-            Shoot();
+            EnemyAbility(target, animatorCop);
+            if(Time.time - lastAttackTime >= fireCooldown)
+                Shoot();
         }
+        
     }
 
     private void OnDrawGizmosSelected()
     {
         //used to see the range in scene view
         Gizmos.DrawWireSphere(transform.position, range);
+    }
+
+    public virtual void EnemyAbility(Transform target, Animator animator)
+    {
+
     }
 
     private void Shoot()
