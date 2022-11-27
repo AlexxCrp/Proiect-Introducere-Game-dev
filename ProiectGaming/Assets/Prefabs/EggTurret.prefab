@@ -135,8 +135,8 @@ MonoBehaviour:
   range: 8
   gun: {fileID: 6536819634715104825}
   firePoint: {fileID: 6536819633725612301}
-  bullet: {fileID: 0}
-  fireCooldown: 0
+  bullet: {fileID: 3877054343885831360, guid: 0886e5b054822c841a9e38c021d55e7e, type: 3}
+  fireCooldown: 1
   animator: {fileID: 0}
   flashRedTime: 0.3
 --- !u!70 &1881008505559107789

@@ -11,10 +11,10 @@ public class BaseEnemyController : MonoBehaviour
     public Transform firePoint;
     public GameObject bullet;
     public float fireCooldown;
-    public Animator animatorCop;
+    public Animator animator;
     public float flashRedTime;
 
-    float lastAttackTime = 0f;
+    protected float lastAttackTime = 0f;
     Vector2 direction;
     Transform target;
     int layerMask;
@@ -37,11 +37,10 @@ public class BaseEnemyController : MonoBehaviour
 
         if (rayInfo)
         {
-            EnemyAbility(target, animatorCop);
+            EnemyAbility(target, animator);
             if(Time.time - lastAttackTime >= fireCooldown)
                 Shoot();
         }
-        
     }
 
     private void OnDrawGizmosSelected()
@@ -51,11 +50,11 @@ public class BaseEnemyController : MonoBehaviour
     }
 
     public virtual void EnemyAbility(Transform target, Animator animator)
-    {
+    { 
 
     }
 
-    private void Shoot()
+    public virtual void Shoot()
     {
         Instantiate(bullet, firePoint.position, firePoint.rotation);
         lastAttackTime = Time.time;
