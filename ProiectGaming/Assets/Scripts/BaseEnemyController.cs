@@ -18,6 +18,7 @@ public class BaseEnemyController : MonoBehaviour
     Vector2 direction;
     Transform target;
     int layerMask;
+    private bool isDisabled;
     private void Start()
     {
         layerMask = LayerMask.GetMask("Player");
@@ -34,8 +35,8 @@ public class BaseEnemyController : MonoBehaviour
         Vector2 targetPosition = target.position;
         direction = targetPosition - (Vector2)transform.position;
         RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, direction, range, layerMask);
-
-        if (rayInfo && Time.time - lastAttackTime >= fireCooldown)
+        
+        if (rayInfo && Time.time - lastAttackTime >= fireCooldown && !isDisabled)
         {
             Shoot();
         }
@@ -71,5 +72,15 @@ public class BaseEnemyController : MonoBehaviour
         sprite.color = Color.red;
         yield return new WaitForSeconds(flashRedTime);
         sprite.color = Color.white;
+    }
+
+    public void Disable()
+    {
+        isDisabled = true;
+    }
+
+    public void Enable()
+    {
+        isDisabled = false;
     }
 }
