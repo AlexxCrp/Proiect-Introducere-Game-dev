@@ -123,7 +123,7 @@ MonoBehaviour:
   firePoint: {fileID: 1737084783865911436}
   bullet: {fileID: 3877054343885831360, guid: 0886e5b054822c841a9e38c021d55e7e, type: 3}
   fireCooldown: 0.5
-  animatorCop: {fileID: 5132662234812661440}
+  animator: {fileID: 5132662234812661440}
   flashRedTime: 0.3
   speed: 5
   minimumDistance: 10
