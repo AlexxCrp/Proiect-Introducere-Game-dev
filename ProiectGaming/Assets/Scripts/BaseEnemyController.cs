@@ -10,6 +10,7 @@ public class BaseEnemyController : MonoBehaviour
     public GameObject gun;
     public Transform firePoint;
     public GameObject bullet;
+    public GameObject heart;
     public float fireCooldown;
     public Animator animator;
     public float flashRedTime;
@@ -68,11 +69,21 @@ public class BaseEnemyController : MonoBehaviour
         if (HP <= 0)
         {
             Destroy(gameObject);
+            SpawnHeart();
         }
 
         
 
         Debug.Log("Enemy took damage: " + damage);
+    }
+
+    private void SpawnHeart()
+    {
+        var randVal = Random.Range(0, 10);
+        if(randVal <= 3)
+        {
+            Instantiate(heart, transform.position, Quaternion.identity);
+        }
     }
 
     public IEnumerator FlashRed()
