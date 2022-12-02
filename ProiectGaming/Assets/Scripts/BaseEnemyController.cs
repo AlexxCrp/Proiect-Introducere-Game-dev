@@ -70,6 +70,8 @@ public class BaseEnemyController : MonoBehaviour
             Destroy(gameObject);
         }
 
+        
+
         Debug.Log("Enemy took damage: " + damage);
     }
 

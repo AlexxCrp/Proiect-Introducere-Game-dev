@@ -140,4 +140,9 @@ public class PlayerManager : MonoBehaviour
     {
         HP -= damage;
     }
+
+    public void Heal(float healAmmount)
+    {
+        HP += healAmmount;
+    }
 }
