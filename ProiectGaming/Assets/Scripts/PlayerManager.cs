@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using System.Linq;
+using Unity.VisualScripting;
 using Debug = UnityEngine.Debug;
 
 public class PlayerManager : MonoBehaviour
@@ -22,6 +23,7 @@ public class PlayerManager : MonoBehaviour
     CapsuleCollider2D playerCollider;
     Transform playerTransform;
     public Animator animator;
+    private GameObject weaponPickup;
 
     private void Awake()
     {
@@ -115,6 +117,11 @@ public class PlayerManager : MonoBehaviour
         }
 
         healthbar.SetHealth(HP);
+
+        if (Input.GetKeyDown(KeyCode.E) && weaponPickup != null)
+        {
+            PickupManager.PickUp(weaponPickup);
+        }
     }
 
     void FixedUpdate()
@@ -156,28 +163,17 @@ public class PlayerManager : MonoBehaviour
         {
             return;
         }
-        Debug.Log("pickin up");
 
-        var pickupName = pickup.gameObject.name;
-        Enum.TryParse(pickupName, out PickupManager.PickupType pickupType);
-        
-        switch (pickupType)
+        weaponPickup = pickup.gameObject;
+    }
+
+    private void OnTriggerExit2D(Collider2D pickup)
+    {
+        if (!pickup.GameObject().CompareTag("Pickup"))
         {
-            default:
-            case PickupManager.PickupType.CrossedPickup:
-                BulletManager.Instance.bulletType = BulletManager.BulletType.Crossed;
-                break;
-            case PickupManager.PickupType.BoltPickup:
-                BulletManager.Instance.bulletType = BulletManager.BulletType.Bolt;
-                break;
-            case PickupManager.PickupType.ChargedPickup:
-                BulletManager.Instance.bulletType = BulletManager.BulletType.Charged;
-                break;
-            case PickupManager.PickupType.WaveformPickup:
-                BulletManager.Instance.bulletType = BulletManager.BulletType.Waveform;
-                break;
+            return;
         }
-        
-        Destroy(pickup.gameObject);
+
+        weaponPickup = null;
     }
 }
