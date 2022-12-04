@@ -2,7 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="acf16540-787e-4285-ac7d-1e6df9ced15c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProiectGaming/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProiectGaming/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Player.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Player.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Bullet.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Bullet.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Crossed.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Crossed.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Waveform.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Waveform.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BaseBulletController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BaseBulletController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BaseEnemyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BaseEnemyController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bullet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BulletManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BulletManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/BulletWaveform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BulletWaveform.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ShootingScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ShootingScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Warped shooting fx files/Pixelart/Pulse/frames/Waveform.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Warped shooting fx files/Pixelart/Pulse/frames/Waveform.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Warped shooting fx files/Pixelart/Pulse/frames/WaveformAnimation.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Warped shooting fx files/Pixelart/Pulse/frames/WaveformAnimation.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Warped shooting fx files/Pixelart/crossed/frames/Crossed.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Warped shooting fx files/Pixelart/crossed/frames/Crossed.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Warped shooting fx files/Pixelart/crossed/frames/CrossedAnimation.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Warped shooting fx files/Pixelart/crossed/frames/CrossedAnimation.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Warped shooting fx files/Pixelart/hits/hits-1/frames/WaveformCollisionAnimation.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Warped shooting fx files/Pixelart/hits/hits-1/frames/WaveformCollisionAnimation.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Warped shooting fx files/Pixelart/hits/hits-1/frames/hits-1-1.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Warped shooting fx files/Pixelart/hits/hits-1/frames/hits-1-1.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/cyberpunk city 2 files/Sprites/player-shoot/BasicAnimation.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/cyberpunk city 2 files/Sprites/player-shoot/BasicAnimation.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/cyberpunk city 2 files/Sprites/player-shoot/Bullet.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/cyberpunk city 2 files/Sprites/player-shoot/Bullet.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +109,7 @@
       <workItem from="1668858241148" duration="20266000" />
       <workItem from="1668949840101" duration="7520000" />
       <workItem from="1668970030739" duration="7807000" />
+      <workItem from="1669654009192" duration="3893000" />
     </task>
     <servers />
   </component>

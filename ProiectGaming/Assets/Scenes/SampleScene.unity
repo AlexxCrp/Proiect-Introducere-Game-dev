@@ -592,6 +592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1549654299}
+  animator: {fileID: 1549654305}
 --- !u!114 &1549654303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,7 +609,29 @@ MonoBehaviour:
   BasicPrefab: {fileID: 7953003389219205477, guid: 0ceed56b54d7c4e45b73abe2b4807664, type: 3}
   WaveformPrefab: {fileID: 156708393733397361, guid: 8bdfbbed1427bd44dabec92f29fad9d1, type: 3}
   CrossedPrefab: {fileID: 8596194199643882931, guid: 914467975f505934fafc4de24a12e4aa, type: 3}
---- !u!1001 &1600505510
+  ChargedPrefab: {fileID: 7953003389219205477, guid: ac35fffa1d0cdae4a948606741c5a619, type: 3}
+  BoltPrefab: {fileID: 7953003389219205477, guid: 57977b329f3d6fe4bb4198ba507096d7, type: 3}
+--- !u!95 &1549654305
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549654298}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ccc186058d326794fa8f044a0fc90eee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1001 &1886821430
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
