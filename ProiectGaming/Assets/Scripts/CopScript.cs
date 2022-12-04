@@ -7,6 +7,7 @@ public class CopScript : BaseEnemyController
     public float speed = 10.0f;
     public float minimumDistance = 1f;
     private bool facingRight = true;
+
     public override void EnemyAbility(Transform target, Animator animator)
     {
         if (Vector3.Distance(transform.position, target.position) > range)
@@ -16,8 +17,8 @@ public class CopScript : BaseEnemyController
         else
         {
             animator.SetBool("isOutOfRange", false);
-
         }
+
         if (facingRight && target.position.x < transform.position.x)
         {
             facingRight = false;

@@ -36,11 +36,15 @@ public class BaseEnemyController : MonoBehaviour
         direction = targetPosition - (Vector2)transform.position;
         RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, direction, range, layerMask);
 
-        if (rayInfo)
+        if (!rayInfo)
         {
-            EnemyAbility(target, animator);
-            if(Time.time - lastAttackTime >= fireCooldown)
-                Shoot();
+            return;
+        }
+
+        EnemyAbility(target, animator);
+        if (Time.time - lastAttackTime >= fireCooldown)
+        {
+            Shoot();
         }
     }
 
