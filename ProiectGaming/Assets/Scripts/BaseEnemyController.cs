@@ -14,7 +14,7 @@ public class BaseEnemyController : MonoBehaviour
     public Animator animator;
     public float flashRedTime;
 
-    float lastAttackTime = 0f;
+    protected float lastAttackTime = 0f;
     Vector2 direction;
     Transform target;
     int layerMask;
@@ -35,10 +35,12 @@ public class BaseEnemyController : MonoBehaviour
         Vector2 targetPosition = target.position;
         direction = targetPosition - (Vector2)transform.position;
         RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, direction, range, layerMask);
-        
-        if (rayInfo && Time.time - lastAttackTime >= fireCooldown && !isDisabled)
+
+        if (rayInfo)
         {
-            Shoot();
+            EnemyAbility(target, animator);
+            if(Time.time - lastAttackTime >= fireCooldown && !isDisabled)
+                Shoot();
         }
     }
 
@@ -48,7 +50,12 @@ public class BaseEnemyController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
-    private void Shoot()
+    public virtual void EnemyAbility(Transform target, Animator animator)
+    { 
+
+    }
+
+    public virtual void Shoot()
     {
         Instantiate(bullet, firePoint.position, firePoint.rotation);
         lastAttackTime = Time.time;
