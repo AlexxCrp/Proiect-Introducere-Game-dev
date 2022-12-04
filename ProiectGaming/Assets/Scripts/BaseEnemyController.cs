@@ -19,10 +19,12 @@ public class BaseEnemyController : MonoBehaviour
     Transform target;
     int layerMask;
     private bool isDisabled;
+
     private void Start()
     {
         layerMask = LayerMask.GetMask("Player");
     }
+
     void Update()
     {
         //cast ray to player if in range of enemy
@@ -64,7 +66,7 @@ public class BaseEnemyController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        Debug.Log("Enemy took damage: " + damage);
+        Debug.Log(string.Format("Enemy took damage: {0}", damage));
     }
 
     public IEnumerator FlashRed()

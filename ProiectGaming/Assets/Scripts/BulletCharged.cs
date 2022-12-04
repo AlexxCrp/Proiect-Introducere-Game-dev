@@ -13,7 +13,8 @@ public class BulletCharged : Bullet
     {
         Quaternion upperRotation = firePoint.rotation * Quaternion.Euler(0, 0, 30);
         Quaternion lowerRotation = firePoint.rotation * Quaternion.Euler(0, 0, -30);
-        BulletManager.Instantiate(BulletManager.Instance.GetPrefab(), firePoint.position, upperRotation);
-        BulletManager.Instantiate(BulletManager.Instance.GetPrefab(), firePoint.position, lowerRotation);
+        Object prefab = BulletManager.Instance.GetPrefab();
+        BulletManager.Instantiate(prefab, firePoint.position, upperRotation);
+        BulletManager.Instantiate(prefab, firePoint.position, lowerRotation);
     }
 }
