@@ -19,6 +19,7 @@ public class BaseEnemyController : MonoBehaviour
     Vector2 direction;
     Transform target;
     int layerMask;
+    private bool isDisabled;
     private void Start()
     {
         layerMask = LayerMask.GetMask("Player");
@@ -39,7 +40,7 @@ public class BaseEnemyController : MonoBehaviour
         if (rayInfo)
         {
             EnemyAbility(target, animator);
-            if(Time.time - lastAttackTime >= fireCooldown)
+            if(Time.time - lastAttackTime >= fireCooldown && !isDisabled)
                 Shoot();
         }
     }
@@ -91,5 +92,15 @@ public class BaseEnemyController : MonoBehaviour
         sprite.color = Color.red;
         yield return new WaitForSeconds(flashRedTime);
         sprite.color = Color.white;
+    }
+
+    public void Disable()
+    {
+        isDisabled = true;
+    }
+
+    public void Enable()
+    {
+        isDisabled = false;
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShootingScript : MonoBehaviour
 {
     public Transform firePoint;
+    public Animator animator;
 
     bool isPressed = false;
     bool canShoot = true;
@@ -20,11 +21,13 @@ public class ShootingScript : MonoBehaviour
         if (isPressed & canShoot)
         {
             StartCoroutine(Shoot());
+            animator.SetBool("isShooting", true);
         }
 
         if (Input.GetButtonUp("Fire1"))
         {
             isPressed = false;
+            animator.SetBool("isShooting", false);
         }
     }
 
@@ -32,7 +35,7 @@ public class ShootingScript : MonoBehaviour
     {
         canShoot = false;
         Instantiate(BulletManager.Instance.GetPrefab(), firePoint.position, firePoint.rotation);
-        BulletManager.Instance.GetBullet().PassiveEffect();
+        BulletManager.Instance.GetBullet().PassiveEffect(firePoint);
         yield return new WaitForSecondsRealtime(BulletManager.Instance.GetBullet().FireRate);
         canShoot = true;
     }

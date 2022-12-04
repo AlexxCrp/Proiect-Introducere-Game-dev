@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="acf16540-787e-4285-ac7d-1e6df9ced15c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BulletWaveform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BulletWaveform.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BaseBulletController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BaseBulletController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BaseEnemyBulletController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BaseEnemyBulletController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,7 +14,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PickupManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.burst@1.6.6/Editor/BurstDisassembler.Core.ARM64.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMPro_Private.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -79,6 +82,8 @@
       <workItem from="1668858241148" duration="20266000" />
       <workItem from="1668949840101" duration="7520000" />
       <workItem from="1668970030739" duration="7807000" />
+      <workItem from="1669654009192" duration="3893000" />
+      <workItem from="1670090035160" duration="4539000" />
     </task>
     <servers />
   </component>

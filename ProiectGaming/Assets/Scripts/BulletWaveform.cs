@@ -4,25 +4,31 @@ using UnityEngine;
 
 public class BulletWaveform : Bullet
 {
-    private static readonly float BaseFireRate = 1f;
+    private static readonly float BaseFireRate = 0.5f;
+    private static readonly float MediumFireRate = 0.25f;
+    private static readonly float FastFireRate = 0.15f;
+    private static readonly float ReallyFastFireRate = 0.05f;
+    
     private static float _updatingFireRate = BaseFireRate;
+
     public BulletWaveform()
     {
-        Damage = 10f;
+        Damage = 50f;
         FireRate = _updatingFireRate;
-        Speed = 50f;
+        Speed = 30f;
     }
 
-    public override void PassiveEffect()
+    public override void PassiveEffect(Transform firePoint)
     {
-        if (_updatingFireRate >= 0.5f)
+        if (_updatingFireRate >= MediumFireRate)
+        {
+            _updatingFireRate -= 0.1f;
+        }
+        else if (_updatingFireRate >= FastFireRate)
         {
             _updatingFireRate -= 0.05f;
         }
-        else if (_updatingFireRate >= 0.25f)
-        {
-            _updatingFireRate -= 0.01f;
-        } else if (_updatingFireRate >= 0.1f)
+        else if (_updatingFireRate >= ReallyFastFireRate)
         {
             _updatingFireRate -= 0.005f;
         }
