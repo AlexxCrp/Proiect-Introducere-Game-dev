@@ -10,6 +10,7 @@ using Debug = UnityEngine.Debug;
 public class PlayerManager : MonoBehaviour
 {
     public float HP = 1000f;
+    public float MaxHp = 1000f;
     public Healthbar healthbar;
     public float maxSpeed = 3.4f;
     public float jumpHeight = 6.5f;
@@ -118,6 +119,16 @@ public class PlayerManager : MonoBehaviour
 
         healthbar.SetHealth(HP);
 
+        if (HP < 0)
+        {
+            HP = 0;
+        }
+        if(HP > MaxHp)
+        {
+            HP = MaxHp;
+        }
+    }
+
         if (Input.GetKeyDown(KeyCode.E) && weaponPickup != null)
         {
             PickupManager.PickUp(weaponPickup);
@@ -156,6 +167,12 @@ public class PlayerManager : MonoBehaviour
     {
         HP -= damage;
     }
+
+    public void Heal(float healAmmount)
+    {
+        HP += healAmmount;
+    }
+}
 
     private void OnTriggerEnter2D(Collider2D pickup)
     {

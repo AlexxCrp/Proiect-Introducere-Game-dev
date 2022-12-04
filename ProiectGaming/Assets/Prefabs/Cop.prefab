@@ -122,6 +122,7 @@ MonoBehaviour:
   gun: {fileID: 1737084782758686589}
   firePoint: {fileID: 1737084783865911436}
   bullet: {fileID: 3877054343885831360, guid: 0886e5b054822c841a9e38c021d55e7e, type: 3}
+  heart: {fileID: 4481213404870168328, guid: 77384ba536e7ca54c91af10401473201, type: 3}
   fireCooldown: 0.5
   animator: {fileID: 5132662234812661440}
   flashRedTime: 0.3
