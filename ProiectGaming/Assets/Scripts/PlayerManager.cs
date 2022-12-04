@@ -59,28 +59,24 @@ public class PlayerManager : MonoBehaviour
         bool keyIsA = Input.GetKey(KeyCode.A);
         if (keyIsA)
         {
-            int value = -1;
-            SetMoveDirection(value);
+            SetMoveDirection(-1);
 
             // Change facing direction - Useful for future animation
             if (facingRight)
             {
-                facingRight = false;
-                playerTransform.localScale = new Vector3(value * Mathf.Abs(playerTransform.localScale.x), playerTransform.localScale.y, playerTransform.localScale.z);
+                Flip();
             }
         }
 
         bool keyIsD = Input.GetKey(KeyCode.D);
         if (keyIsD)
         {
-            int value = 1;
-            SetMoveDirection(value);
+            SetMoveDirection(1);
 
             // Change facing direction - Useful for future animation
             if (!facingRight)
             {
-                facingRight = true;
-                playerTransform.localScale = new Vector3(value * Mathf.Abs(playerTransform.localScale.x), playerTransform.localScale.y, playerTransform.localScale.z);
+                Flip();
             }
         }
 
@@ -89,18 +85,10 @@ public class PlayerManager : MonoBehaviour
         {
             playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, jumpHeight);
             animator.SetBool("isJumping", true);
-
         }
 
-        if (isGrounded)
-        {
-            animator.SetBool("isJumping", false);
-        }
-        else
-        {
-            animator.SetBool("isJumping", true);
-        }
-
+        bool isInAir = !isGrounded;
+        animator.SetBool("isJumping", isInAir);
 
         // Camera follow
         if (mainCamera)
@@ -128,11 +116,7 @@ public class PlayerManager : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPos, colliderRadius);
         
         //Check if any of the overlapping colliders are not player collider, if so, set isGrounded to true
-        isGrounded = false;
-        if (colliders.Any(x => x.gameObject.tag != "Player"))
-        {
-            isGrounded = true;
-        }
+        isGrounded = colliders.Any(x => x.gameObject.tag != "Player");
 
         // Apply movement velocity
         playerRigidBody.velocity = new Vector2((moveDirection) * maxSpeed, playerRigidBody.velocity.y);
@@ -146,13 +130,13 @@ public class PlayerManager : MonoBehaviour
         animator.SetFloat("Speed", 10);
     }
 
-    public void TakeDamage(float damage)
+    private void Flip()
     {
-        HP -= damage;
+        facingRight = !facingRight;
+        playerTransform.Rotate(new Vector3(0, 180, 0), Space.Self);
     }
 
-    public void Heal(float healAmmount)
-    {
-        HP += healAmmount;
-    }
+    public void TakeDamage(float damage) => HP -= damage;
+
+    public void Heal(float healAmmount) => HP += healAmmount;
 }

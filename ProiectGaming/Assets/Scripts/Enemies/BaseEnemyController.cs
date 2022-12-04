@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseEnemyController : MonoBehaviour
@@ -19,11 +18,13 @@ public class BaseEnemyController : MonoBehaviour
     Vector2 direction;
     Transform target;
     int layerMask;
-    private void Start()
+
+    protected virtual void Start()
     {
         layerMask = LayerMask.GetMask("Player");
     }
-    void Update()
+    
+    protected virtual void Update()
     {
         //cast ray to player if in range of enemy
         //while ray is cast shoot
@@ -41,7 +42,7 @@ public class BaseEnemyController : MonoBehaviour
             return;
         }
 
-        EnemyAbility(target, animator);
+        EnemyAbility(target);
         if (Time.time - lastAttackTime >= fireCooldown)
         {
             Shoot();
@@ -54,7 +55,7 @@ public class BaseEnemyController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
-    public virtual void EnemyAbility(Transform target, Animator animator)
+    protected virtual void EnemyAbility(Transform target)
     { 
 
     }

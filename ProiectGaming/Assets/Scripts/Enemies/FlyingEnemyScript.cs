@@ -7,7 +7,7 @@ public class FlyingEnemyScript : BaseEnemyController
     public float speed = 10.0f;
     public float minimumDistance = 1f;
 
-    public override void EnemyAbility(Transform target, Animator animator)
+    protected override void EnemyAbility(Transform target)
     {
         firePoint.transform.right = target.position - transform.position;
 

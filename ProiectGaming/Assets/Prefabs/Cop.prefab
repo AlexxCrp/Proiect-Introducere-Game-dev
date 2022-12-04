@@ -126,7 +126,6 @@ MonoBehaviour:
   fireCooldown: 0.5
   animator: {fileID: 5132662234812661440}
   flashRedTime: 0.3
-  speed: 5
   minimumDistance: 10
 --- !u!95 &5132662234812661440
 Animator:
