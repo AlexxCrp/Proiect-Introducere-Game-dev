@@ -19,7 +19,7 @@ public class BulletBolt : Bullet
     private IEnumerator EMP(BaseEnemyController enemy)
     {
         enemy.Disable();
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(3f);
         enemy.Enable();
     }
 }
