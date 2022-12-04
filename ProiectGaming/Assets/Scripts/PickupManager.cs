@@ -22,7 +22,7 @@ public class PickupManager : MonoBehaviour
     {
         while (true)
         {
-            transform.position = new Vector3(0, Mathf.Sin(Time.time) * 0.5f, 0);
+            transform.position = new Vector3(transform.position.x, Mathf.Sin(Time.time) * 0.5f, 0);
             yield return null;
         }
     }

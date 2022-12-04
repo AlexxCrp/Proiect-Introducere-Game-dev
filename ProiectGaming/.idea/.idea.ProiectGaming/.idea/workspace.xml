@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="acf16540-787e-4285-ac7d-1e6df9ced15c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BaseBulletController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BaseBulletController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BaseEnemyBulletController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BaseEnemyBulletController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Cop.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Cop.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PickupManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PickupManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

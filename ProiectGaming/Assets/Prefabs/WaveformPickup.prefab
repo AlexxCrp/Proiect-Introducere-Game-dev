@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5572150962053172623}
   - component: {fileID: 7838197179478695608}
   - component: {fileID: 1008508691330318026}
+  - component: {fileID: -6468626750727375476}
   m_Layer: 0
   m_Name: WaveformPickup
   m_TagString: Pickup
@@ -124,6 +125,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-6468626750727375476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156708393733397361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b0f3dec20f073844a44695c7967d956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9136288748151655380
 GameObject:
   m_ObjectHideFlags: 0
