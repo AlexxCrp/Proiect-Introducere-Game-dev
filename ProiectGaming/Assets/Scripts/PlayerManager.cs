@@ -127,7 +127,7 @@ public class PlayerManager : MonoBehaviour
         {
             HP = MaxHp;
         }
-    }
+    
 
         if (Input.GetKeyDown(KeyCode.E) && weaponPickup != null)
         {
@@ -172,7 +172,7 @@ public class PlayerManager : MonoBehaviour
     {
         HP += healAmmount;
     }
-}
+
 
     private void OnTriggerEnter2D(Collider2D pickup)
     {
