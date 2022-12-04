@@ -19,7 +19,7 @@ public class BaseBulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("Player") || collider.gameObject.CompareTag("Bullet"))
+        if (!collider.gameObject.CompareTag("Enemy"))
         {
             return;
         }

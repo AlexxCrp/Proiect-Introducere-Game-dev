@@ -1,7 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using System.Linq;
+using Unity.VisualScripting;
+using Debug = UnityEngine.Debug;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -19,10 +23,13 @@ public class PlayerManager : MonoBehaviour
     CapsuleCollider2D playerCollider;
     Transform playerTransform;
     public Animator animator;
+    private GameObject weaponPickup;
+
     private void Awake()
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,7 +72,8 @@ public class PlayerManager : MonoBehaviour
             if (facingRight)
             {
                 facingRight = false;
-                playerTransform.localScale = new Vector3(value * Mathf.Abs(playerTransform.localScale.x), playerTransform.localScale.y, playerTransform.localScale.z);
+                playerTransform.localScale = new Vector3(value * Mathf.Abs(playerTransform.localScale.x),
+                    playerTransform.localScale.y, playerTransform.localScale.z);
             }
         }
 
@@ -79,7 +87,8 @@ public class PlayerManager : MonoBehaviour
             if (!facingRight)
             {
                 facingRight = true;
-                playerTransform.localScale = new Vector3(value * Mathf.Abs(playerTransform.localScale.x), playerTransform.localScale.y, playerTransform.localScale.z);
+                playerTransform.localScale = new Vector3(value * Mathf.Abs(playerTransform.localScale.x),
+                    playerTransform.localScale.y, playerTransform.localScale.z);
             }
         }
 
@@ -88,7 +97,6 @@ public class PlayerManager : MonoBehaviour
         {
             playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, jumpHeight);
             animator.SetBool("isJumping", true);
-
         }
 
         if (isGrounded)
@@ -104,19 +112,27 @@ public class PlayerManager : MonoBehaviour
         // Camera follow
         if (mainCamera)
         {
-            mainCamera.transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, cameraPos.z);
+            mainCamera.transform.position =
+                new Vector3(playerTransform.position.x, playerTransform.position.y, cameraPos.z);
         }
+
         healthbar.SetHealth(HP);
+
+        if (Input.GetKeyDown(KeyCode.E) && weaponPickup != null)
+        {
+            PickupManager.PickUp(weaponPickup);
+        }
     }
 
     void FixedUpdate()
     {
         Bounds colliderBounds = playerCollider.bounds;
         float colliderRadius = playerCollider.size.x * 0.4f * Mathf.Abs(base.transform.localScale.x);
-        Vector3 groundCheckPos = colliderBounds.min + new Vector3(colliderBounds.size.x * 0.5f, colliderRadius * 0.9f, 0);
+        Vector3 groundCheckPos =
+            colliderBounds.min + new Vector3(colliderBounds.size.x * 0.5f, colliderRadius * 0.9f, 0);
         // Check if player is grounded
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPos, colliderRadius);
-        
+
         //Check if any of the overlapping colliders are not player collider, if so, set isGrounded to true
         isGrounded = false;
         if (colliders.Any(x => x.gameObject.tag != "Player"))
@@ -139,5 +155,25 @@ public class PlayerManager : MonoBehaviour
     public void TakeDamage(float damage)
     {
         HP -= damage;
+    }
+
+    private void OnTriggerEnter2D(Collider2D pickup)
+    {
+        if (!pickup.gameObject.CompareTag("Pickup"))
+        {
+            return;
+        }
+
+        weaponPickup = pickup.gameObject;
+    }
+
+    private void OnTriggerExit2D(Collider2D pickup)
+    {
+        if (!pickup.GameObject().CompareTag("Pickup"))
+        {
+            return;
+        }
+
+        weaponPickup = null;
     }
 }
