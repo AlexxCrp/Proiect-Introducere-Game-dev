@@ -20,7 +20,10 @@ public class PlayerManager : MonoBehaviour
     CapsuleCollider2D playerCollider;
     Transform playerTransform;
     public Animator animator;
-    public bool flipTurret = false;
+    /// <summary>
+    /// Works as an observable. When set to true, turret consumes it (flips and resets to false).
+    /// </summary>
+    public bool hasFlipped = false;
 
     private void Awake()
     {
@@ -136,7 +139,7 @@ public class PlayerManager : MonoBehaviour
     {
         facingRight = !facingRight;
         playerTransform.Rotate(new Vector3(0, 180, 0), Space.Self);
-        flipTurret = true;
+        hasFlipped = true;
     }
 
     public void TakeDamage(float damage) => HP -= damage;

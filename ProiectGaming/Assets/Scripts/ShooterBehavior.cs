@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShooterBehavior : MonoBehaviour
@@ -23,39 +21,20 @@ public class ShooterBehavior : MonoBehaviour
         _mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = _mousePos - transform.position;
 
-        if (!_player.facingRight)
-        {
-            direction *= -1;
-        }
-
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed * Time.deltaTime);
 
-
-        if(_player.flipTurret)
+        if(_player.hasFlipped)
         {
             Flip();
         }
-
-/*        if (_player.facingRight && !gunFacingRight)
-        {
-            firePoint.transform.Rotate(0f, 180f, 0f);
-            gunFacingRight = true;
-        }
-
-        if (!_player.facingRight && gunFacingRight)
-        {
-            firePoint.transform.Rotate(0f, 180f, 0f);
-            gunFacingRight = false;
-        }*/
     }
 
 
     private void Flip()
     {
         gunFacingRight = !gunFacingRight;
-        firePoint.transform.Rotate(0f, 180f, 0f);
-        _player.flipTurret = false;
+        _player.hasFlipped = false;
     }
 }
