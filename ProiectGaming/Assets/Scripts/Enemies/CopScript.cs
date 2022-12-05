@@ -14,7 +14,7 @@ public class CopScript : BaseMovingEnemyController
 
     protected override void EnemyAbility(Transform target)
     {
-        base.EnemyAbility(target);
+        TurnToPlayer(target);
 
         bool isOutOfRange = range < Vector3.Distance(transform.position, target.position);
         animator.SetBool("isOutOfRange", isOutOfRange);

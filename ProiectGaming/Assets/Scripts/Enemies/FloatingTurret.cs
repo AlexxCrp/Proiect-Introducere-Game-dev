@@ -9,16 +9,17 @@ public class FloatingTurret : BaseMovingEnemyController
     public Transform groundCheckPos;
     bool mustFlip = false;
     public LayerMask groundLayer;
+    private Collider2D collider;
 
     protected override void Start()
     {
         base.Start();
         mustPatrol = true;
+        collider = GetComponent<Collider2D>();
     }
 
     protected override void EnemyAbility(Transform target)
     {
-        base.EnemyAbility(target);
         if(mustPatrol)
         {
             Patrol();
@@ -36,11 +37,11 @@ public class FloatingTurret : BaseMovingEnemyController
 
     private void Patrol()
     {
-        if(mustFlip)
+        if(mustFlip || collider.IsTouchingLayers(groundLayer))
         {
             Flip();
         }
-        rb.velocity = new Vector2(walkSpeed * Time.fixedDeltaTime, rb.velocity.y);
+        transform.position += transform.right * walkSpeed * Time.deltaTime;
     }
 
     protected new void Flip()

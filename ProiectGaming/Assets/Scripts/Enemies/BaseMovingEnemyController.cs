@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class BaseMovingEnemyController : BaseEnemyController
 {
-    protected float walkSpeed = 2.4f;
+    public float walkSpeed = 2.4f;
     protected bool facingRight = true;
 
-    // Update is called once per frame
-    protected override void EnemyAbility(Transform target)
+    protected void TurnToPlayer(Transform target)
     {
         if (facingRight && targetOnLeft(target))
         {
