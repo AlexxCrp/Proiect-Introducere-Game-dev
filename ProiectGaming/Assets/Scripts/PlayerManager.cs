@@ -20,6 +20,8 @@ public class PlayerManager : MonoBehaviour
     CapsuleCollider2D playerCollider;
     Transform playerTransform;
     public Animator animator;
+    public bool flipTurret = false;
+
     private void Awake()
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -134,6 +136,7 @@ public class PlayerManager : MonoBehaviour
     {
         facingRight = !facingRight;
         playerTransform.Rotate(new Vector3(0, 180, 0), Space.Self);
+        flipTurret = true;
     }
 
     public void TakeDamage(float damage) => HP -= damage;

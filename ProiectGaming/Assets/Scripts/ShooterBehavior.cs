@@ -20,16 +20,12 @@ public class ShooterBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 direction;
         _mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = _mousePos - transform.position;
 
-        if (_player.facingRight)
+        if (!_player.facingRight)
         {
-            direction = _mousePos - transform.position;
-        }
-        else
-        {
-            direction = -(_mousePos - transform.position);
+            direction *= -1;
         }
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -37,7 +33,12 @@ public class ShooterBehavior : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed * Time.deltaTime);
 
 
-        if (_player.facingRight && !gunFacingRight)
+        if(_player.flipTurret)
+        {
+            Flip();
+        }
+
+/*        if (_player.facingRight && !gunFacingRight)
         {
             firePoint.transform.Rotate(0f, 180f, 0f);
             gunFacingRight = true;
@@ -47,6 +48,14 @@ public class ShooterBehavior : MonoBehaviour
         {
             firePoint.transform.Rotate(0f, 180f, 0f);
             gunFacingRight = false;
-        }
+        }*/
+    }
+
+
+    private void Flip()
+    {
+        gunFacingRight = !gunFacingRight;
+        firePoint.transform.Rotate(0f, 180f, 0f);
+        _player.flipTurret = false;
     }
 }
