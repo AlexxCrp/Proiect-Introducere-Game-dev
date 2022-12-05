@@ -16,6 +16,7 @@ public class CopScript : BaseMovingEnemyController
     {
         TurnToPlayer(target);
 
+        // Check if player is in detection range
         bool isOutOfRange = range < Vector3.Distance(transform.position, target.position);
         animator.SetBool("isOutOfRange", isOutOfRange);
         if(isOutOfRange)
@@ -23,6 +24,7 @@ public class CopScript : BaseMovingEnemyController
             return;
         }
 
+        // Run to player if not in min range
         bool isInMinRange = Vector2.Distance(target.position, transform.position) < minimumDistance;
         if (!isInMinRange)
         {

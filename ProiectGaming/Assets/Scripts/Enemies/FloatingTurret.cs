@@ -5,7 +5,6 @@ public class FloatingTurret : BaseMovingEnemyController
 {
     [HideInInspector]
     public bool mustPatrol = true;
-    public Rigidbody2D rb;
     public Transform groundCheckPos;
     bool mustFlip = false;
     public LayerMask groundLayer;
@@ -32,7 +31,6 @@ public class FloatingTurret : BaseMovingEnemyController
         {
             mustFlip = !Physics2D.OverlapCircle(groundCheckPos.position, 0.1f, groundLayer);
         }
-
     }
 
     private void Patrol()
@@ -47,9 +45,7 @@ public class FloatingTurret : BaseMovingEnemyController
     protected new void Flip()
     {
         mustPatrol = false;
-        transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
-        walkSpeed *= -1;
+        base.Flip();
         mustPatrol = true;
     }
-
 }
