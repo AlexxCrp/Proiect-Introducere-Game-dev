@@ -3,12 +3,22 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    public int Value = 0;
-    public Text scoreText;
+    public static int Value = 0;
+    public static Text scoreText;
 
-    // Update is called once per frame
-    void Update()
+    public static void IncrementScore()
+    {
+        Value++;
+        ScoreDisplay();
+    }
+
+    public static void ScoreDisplay()
     {
         scoreText.text = Value.ToString();
+    }
+
+    public void Start()
+    {
+        scoreText = GetComponent<Text>();
     }
 }
