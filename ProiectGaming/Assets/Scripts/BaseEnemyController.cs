@@ -10,6 +10,7 @@ public class BaseEnemyController : MonoBehaviour
     public GameObject gun;
     public Transform firePoint;
     public GameObject bullet;
+    public GameObject heart;
     public float fireCooldown;
     public Animator animator;
     public float flashRedTime;
@@ -18,6 +19,8 @@ public class BaseEnemyController : MonoBehaviour
     Vector2 direction;
     Transform target;
     int layerMask;
+
+    private bool isDisabled;
 
     private void Start()
     {
@@ -39,7 +42,7 @@ public class BaseEnemyController : MonoBehaviour
         if (rayInfo)
         {
             EnemyAbility(target, animator);
-            if(Time.time - lastAttackTime >= fireCooldown)
+            if(Time.time - lastAttackTime >= fireCooldown && !isDisabled)
                 Shoot();
         }
     }
@@ -71,9 +74,21 @@ public class BaseEnemyController : MonoBehaviour
            Score.IncrementScore();
 
             Destroy(gameObject);
+            SpawnHeart();
         }
 
+        
+
         Debug.Log("Enemy took damage: " + damage);
+    }
+
+    private void SpawnHeart()
+    {
+        var randVal = Random.Range(0, 10);
+        if(randVal <= 3)
+        {
+            Instantiate(heart, transform.position, Quaternion.identity);
+        }
     }
 
     public IEnumerator FlashRed()
@@ -81,5 +96,15 @@ public class BaseEnemyController : MonoBehaviour
         sprite.color = Color.red;
         yield return new WaitForSeconds(flashRedTime);
         sprite.color = Color.white;
+    }
+
+    public void Disable()
+    {
+        isDisabled = true;
+    }
+
+    public void Enable()
+    {
+        isDisabled = false;
     }
 }
