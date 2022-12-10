@@ -19,7 +19,9 @@ public class BaseEnemyController : MonoBehaviour
     Vector2 direction;
     Transform target;
     int layerMask;
+
     private bool isDisabled;
+
     private void Start()
     {
         layerMask = LayerMask.GetMask("Player");
@@ -69,6 +71,8 @@ public class BaseEnemyController : MonoBehaviour
         StartCoroutine(FlashRed());
         if (HP <= 0)
         {
+           Score.IncrementScore();
+
             Destroy(gameObject);
             SpawnHeart();
         }
