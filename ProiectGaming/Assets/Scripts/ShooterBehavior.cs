@@ -41,12 +41,15 @@ public class ShooterBehavior : MonoBehaviour
         {
             firePoint.transform.Rotate(0f, 180f, 0f);
             gunFacingRight = true;
+            firePoint.GetComponent<SpriteRenderer>().flipX = true;
         }
 
         if (!_player.facingRight && gunFacingRight)
         {
             firePoint.transform.Rotate(0f, 180f, 0f);
+            firePoint.GetComponent<SpriteRenderer>().flipX = false;
             gunFacingRight = false;
         }
+
     }
 }

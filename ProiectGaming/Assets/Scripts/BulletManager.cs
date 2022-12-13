@@ -11,7 +11,9 @@ public class BulletManager: MonoBehaviour
     {
         Basic,
         Waveform,
-        Crossed
+        Crossed,
+        Charged,
+        Bolt
     }
 
     public BulletType bulletType;
@@ -26,6 +28,8 @@ public class BulletManager: MonoBehaviour
     public Object BasicPrefab;
     public Object WaveformPrefab;
     public Object CrossedPrefab;
+    public Object ChargedPrefab;
+    public Object BoltPrefab;
 
     public Bullet GetBullet()
     {
@@ -38,6 +42,10 @@ public class BulletManager: MonoBehaviour
                 return new BulletWaveform();
             case BulletType.Crossed:
                 return new BulletCrossed();
+            case BulletType.Charged:
+                return new BulletCharged();
+            case BulletType.Bolt:
+                return new BulletBolt();
         }
     }
 
@@ -49,6 +57,8 @@ public class BulletManager: MonoBehaviour
             case BulletType.Basic: return BasicPrefab;   
             case BulletType.Waveform: return WaveformPrefab;
             case BulletType.Crossed: return CrossedPrefab;
+            case BulletType.Charged: return ChargedPrefab;
+            case BulletType.Bolt: return BoltPrefab;
         }
     }
 }

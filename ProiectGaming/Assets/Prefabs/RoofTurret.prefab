@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1155980036502173454}
   m_Layer: 0
   m_Name: RoofTurret
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,6 +112,7 @@ MonoBehaviour:
   gun: {fileID: 608166056608395310}
   firePoint: {fileID: 829674317025410266}
   bullet: {fileID: 3877054343885831360, guid: 0886e5b054822c841a9e38c021d55e7e, type: 3}
+  heart: {fileID: 4481213404870168328, guid: 77384ba536e7ca54c91af10401473201, type: 3}
   fireCooldown: 1
   animator: {fileID: 0}
   flashRedTime: 0.3
@@ -188,6 +189,7 @@ MonoBehaviour:
   gun: {fileID: 0}
   firePoint: {fileID: 0}
   bullet: {fileID: 0}
+  heart: {fileID: 0}
   fireCooldown: 0
   animator: {fileID: 0}
   flashRedTime: 0
