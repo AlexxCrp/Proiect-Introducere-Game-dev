@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class Bullet
 {
@@ -9,7 +10,7 @@ public class Bullet
     public float Speed { get; set; } = 5f;
 
     // Passive effect triggers on each shot
-    public virtual void PassiveEffect()
+    public virtual void PassiveEffect(Transform firePoint)
     {
     }
 
