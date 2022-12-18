@@ -13,9 +13,9 @@ public class GameManager : MonoBehaviour
     }
 
     public static GameManager Instance { get; private set; }
-    
+
     public GameState gameState;
-    
+
     private void Awake()
     {
         Instance = this;
@@ -27,6 +27,16 @@ public class GameManager : MonoBehaviour
         {
             StartGame();
         }
+
+        // Just some driver code to test
+        // if (Input.GetKey(KeyCode.C))
+        // {
+        //     ScoreManager.Instance.SaveToLeaderboard("asd");
+        // }
+        // if (Input.GetKey(KeyCode.X))
+        // {
+        //     ScoreManager.Instance.LoadLeaderboard();
+        // }
     }
 
     // To start a random scene, pass a random number to LoadScene
