@@ -31,7 +31,6 @@ public class ShooterBehavior : MonoBehaviour
         }
     }
 
-
     private void Flip()
     {
         gunFacingRight = !gunFacingRight;

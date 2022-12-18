@@ -24,6 +24,7 @@ public class PlayerManager : MonoBehaviour
     /// Works as an observable. When set to true, turret consumes it (flips and resets to false).
     /// </summary>
     public bool hasFlipped = false;
+    private GameObject weaponPickup;
 
     private void Awake()
     {
@@ -110,6 +111,11 @@ public class PlayerManager : MonoBehaviour
         {
             HP = MaxHp;
         }
+
+        if(weaponPickup is not null && Input.GetKeyDown(KeyCode.E))
+        {
+            PickupManager.PickUp(weaponPickup);
+        }
     }
 
     void FixedUpdate()
@@ -145,4 +151,24 @@ public class PlayerManager : MonoBehaviour
     public void TakeDamage(float damage) => HP -= damage;
 
     public void Heal(float healAmmount) => HP += healAmmount;
+
+    private void OnTriggerEnter2D(Collider2D pickup)
+    {
+        if(!pickup.gameObject.CompareTag("Pickup"))
+        {
+            return;
+        }
+
+        weaponPickup = pickup.gameObject;
+    }
+
+    private void OnTriggerExit2D(Collider2D pickup)
+    {
+        if (!pickup.gameObject.CompareTag("Pickup"))
+        {
+            return;
+        }
+
+        weaponPickup = null;
+    }
 }
