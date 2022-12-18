@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseEnemyController : MonoBehaviour
@@ -20,13 +19,12 @@ public class BaseEnemyController : MonoBehaviour
     Transform target;
     int layerMask;
 
-    private bool isDisabled;
-
-    private void Start()
+    protected virtual void Start()
     {
         layerMask = LayerMask.GetMask("Player");
     }
-    void Update()
+    
+    protected virtual void Update()
     {
         //cast ray to player if in range of enemy
         //while ray is cast shoot
@@ -39,11 +37,15 @@ public class BaseEnemyController : MonoBehaviour
         direction = targetPosition - (Vector2)transform.position;
         RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, direction, range, layerMask);
 
-        if (rayInfo)
+        if (!rayInfo)
         {
-            EnemyAbility(target, animator);
-            if(Time.time - lastAttackTime >= fireCooldown && !isDisabled)
-                Shoot();
+            return;
+        }
+
+        EnemyAbility(target);
+        if (Time.time - lastAttackTime >= fireCooldown)
+        {
+            Shoot();
         }
     }
 
@@ -53,7 +55,7 @@ public class BaseEnemyController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
-    public virtual void EnemyAbility(Transform target, Animator animator)
+    protected virtual void EnemyAbility(Transform target)
     { 
 
     }
@@ -71,8 +73,6 @@ public class BaseEnemyController : MonoBehaviour
         StartCoroutine(FlashRed());
         if (HP <= 0)
         {
-           Score.IncrementScore();
-
             Destroy(gameObject);
             SpawnHeart();
         }
@@ -96,15 +96,5 @@ public class BaseEnemyController : MonoBehaviour
         sprite.color = Color.red;
         yield return new WaitForSeconds(flashRedTime);
         sprite.color = Color.white;
-    }
-
-    public void Disable()
-    {
-        isDisabled = true;
-    }
-
-    public void Enable()
-    {
-        isDisabled = false;
     }
 }
