@@ -20,6 +20,7 @@ public class PlayerManager : MonoBehaviour
     CapsuleCollider2D playerCollider;
     Transform playerTransform;
     public Animator animator;
+    public float cameraDisplacementY = 1.35f;
     /// <summary>
     /// Works as an observable. When set to true, turret consumes it (flips and resets to false).
     /// </summary>
@@ -99,7 +100,8 @@ public class PlayerManager : MonoBehaviour
         // Camera follow
         if (mainCamera)
         {
-            mainCamera.transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, cameraPos.z);
+            mainCamera.transform.position =
+                new Vector3(playerTransform.position.x, playerTransform.position.y + cameraDisplacementY, cameraPos.z);
         }
         healthbar.SetHealth(HP);
 
