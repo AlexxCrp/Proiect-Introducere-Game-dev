@@ -10,9 +10,12 @@ public class RoofTurretScript : BaseEnemyController
     // Start is called before the first frame update
     public override void Shoot()
     {
-        Instantiate(bullet, firePoint.position, firePoint.rotation);
-        Instantiate(bullet, firePoint2.position, firePoint2.rotation);
-        Instantiate(bullet, firePoint3.position, firePoint3.rotation);
+        InstantiateBullet(firePoint);
+        InstantiateBullet(firePoint2);
+        InstantiateBullet(firePoint3);
         lastAttackTime = Time.time;
     }
+
+    private void InstantiateBullet(Transform firePoint) => Instantiate(bullet, firePoint.position, firePoint.rotation);
+
 }

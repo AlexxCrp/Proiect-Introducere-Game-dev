@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseEnemyController : MonoBehaviour
@@ -19,14 +18,14 @@ public class BaseEnemyController : MonoBehaviour
     Vector2 direction;
     Transform target;
     int layerMask;
-
     private bool isDisabled;
 
-    private void Start()
+    protected virtual void Start()
     {
         layerMask = LayerMask.GetMask("Player");
     }
-    void Update()
+
+    protected virtual void Update()
     {
         //cast ray to player if in range of enemy
         //while ray is cast shoot
@@ -35,15 +34,20 @@ public class BaseEnemyController : MonoBehaviour
         //and in those cases a ray is a good solution
 
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
-        Vector2 targetPosition = target.position;
-        direction = targetPosition - (Vector2)transform.position;
+        direction = target.position - transform.position;
         RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, direction, range, layerMask);
 
-        if (rayInfo)
+        if (!rayInfo)
         {
-            EnemyAbility(target, animator);
-            if(Time.time - lastAttackTime >= fireCooldown && !isDisabled)
-                Shoot();
+            return;
+        }
+
+        EnemyAbility(target);
+
+        bool canShoot = !isDisabled && (Time.time - lastAttackTime >= fireCooldown);
+        if (canShoot)
+        {
+            Shoot();
         }
     }
 
@@ -53,7 +57,7 @@ public class BaseEnemyController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
-    public virtual void EnemyAbility(Transform target, Animator animator)
+    protected virtual void EnemyAbility(Transform target)
     { 
 
     }
@@ -71,7 +75,7 @@ public class BaseEnemyController : MonoBehaviour
         StartCoroutine(FlashRed());
         if (HP <= 0)
         {
-           Score.IncrementScore();
+            Score.IncrementScore();
 
             Destroy(gameObject);
             SpawnHeart();
@@ -79,7 +83,7 @@ public class BaseEnemyController : MonoBehaviour
 
         
 
-        Debug.Log("Enemy took damage: " + damage);
+        Debug.Log(string.Format("Enemy took damage: {0}", damage));
     }
 
     private void SpawnHeart()

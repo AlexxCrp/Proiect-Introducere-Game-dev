@@ -8,11 +8,13 @@ public class HealingScript : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
-        {
-            var player = collision.GetComponent<PlayerManager>();
-            player.Heal(healingAmmount);
-            Destroy(gameObject);
+        if (collision.tag != "Player")
+        { 
+            return;
         }
+
+        var player = collision.GetComponent<PlayerManager>();
+        player.Heal(healingAmmount);
+        Destroy(gameObject);
     }
 }

@@ -1,11 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using System.Linq;
-using Unity.VisualScripting;
-using Debug = UnityEngine.Debug;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -24,13 +20,16 @@ public class PlayerManager : MonoBehaviour
     CapsuleCollider2D playerCollider;
     Transform playerTransform;
     public Animator animator;
+    /// <summary>
+    /// Works as an observable. When set to true, turret consumes it (flips and resets to false).
+    /// </summary>
+    public bool hasFlipped = false;
     private GameObject weaponPickup;
 
     private void Awake()
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -66,30 +65,24 @@ public class PlayerManager : MonoBehaviour
         bool keyIsA = Input.GetKey(KeyCode.A);
         if (keyIsA)
         {
-            int value = -1;
-            SetMoveDirection(value);
+            SetMoveDirection(-1);
 
             // Change facing direction - Useful for future animation
             if (facingRight)
             {
-                facingRight = false;
-                playerTransform.localScale = new Vector3(value * Mathf.Abs(playerTransform.localScale.x),
-                    playerTransform.localScale.y, playerTransform.localScale.z);
+                Flip();
             }
         }
 
         bool keyIsD = Input.GetKey(KeyCode.D);
         if (keyIsD)
         {
-            int value = 1;
-            SetMoveDirection(value);
+            SetMoveDirection(1);
 
             // Change facing direction - Useful for future animation
             if (!facingRight)
             {
-                facingRight = true;
-                playerTransform.localScale = new Vector3(value * Mathf.Abs(playerTransform.localScale.x),
-                    playerTransform.localScale.y, playerTransform.localScale.z);
+                Flip();
             }
         }
 
@@ -100,23 +93,14 @@ public class PlayerManager : MonoBehaviour
             animator.SetBool("isJumping", true);
         }
 
-        if (isGrounded)
-        {
-            animator.SetBool("isJumping", false);
-        }
-        else
-        {
-            animator.SetBool("isJumping", true);
-        }
-
+        bool isInAir = !isGrounded;
+        animator.SetBool("isJumping", isInAir);
 
         // Camera follow
         if (mainCamera)
         {
-            mainCamera.transform.position =
-                new Vector3(playerTransform.position.x, playerTransform.position.y, cameraPos.z);
+            mainCamera.transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, cameraPos.z);
         }
-
         healthbar.SetHealth(HP);
 
         if (HP < 0)
@@ -127,9 +111,8 @@ public class PlayerManager : MonoBehaviour
         {
             HP = MaxHp;
         }
-    
 
-        if (Input.GetKeyDown(KeyCode.E) && weaponPickup != null)
+        if(weaponPickup is not null && Input.GetKeyDown(KeyCode.E))
         {
             PickupManager.PickUp(weaponPickup);
         }
@@ -139,17 +122,12 @@ public class PlayerManager : MonoBehaviour
     {
         Bounds colliderBounds = playerCollider.bounds;
         float colliderRadius = playerCollider.size.x * 0.4f * Mathf.Abs(base.transform.localScale.x);
-        Vector3 groundCheckPos =
-            colliderBounds.min + new Vector3(colliderBounds.size.x * 0.5f, colliderRadius * 0.9f, 0);
+        Vector3 groundCheckPos = colliderBounds.min + new Vector3(colliderBounds.size.x * 0.5f, colliderRadius * 0.9f, 0);
         // Check if player is grounded
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPos, colliderRadius);
-
+        
         //Check if any of the overlapping colliders are not player collider, if so, set isGrounded to true
-        isGrounded = false;
-        if (colliders.Any(x => x.gameObject.tag != "Player"))
-        {
-            isGrounded = true;
-        }
+        isGrounded = colliders.Any(x => x.gameObject.tag != "Player");
 
         // Apply movement velocity
         playerRigidBody.velocity = new Vector2((moveDirection) * maxSpeed, playerRigidBody.velocity.y);
@@ -163,20 +141,20 @@ public class PlayerManager : MonoBehaviour
         animator.SetFloat("Speed", 10);
     }
 
-    public void TakeDamage(float damage)
+    private void Flip()
     {
-        HP -= damage;
+        facingRight = !facingRight;
+        playerTransform.Rotate(new Vector3(0, 180, 0), Space.Self);
+        hasFlipped = true;
     }
 
-    public void Heal(float healAmmount)
-    {
-        HP += healAmmount;
-    }
+    public void TakeDamage(float damage) => HP -= damage;
 
+    public void Heal(float healAmmount) => HP += healAmmount;
 
     private void OnTriggerEnter2D(Collider2D pickup)
     {
-        if (!pickup.gameObject.CompareTag("Pickup"))
+        if(!pickup.gameObject.CompareTag("Pickup"))
         {
             return;
         }
@@ -186,7 +164,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D pickup)
     {
-        if (!pickup.GameObject().CompareTag("Pickup"))
+        if (!pickup.gameObject.CompareTag("Pickup"))
         {
             return;
         }
