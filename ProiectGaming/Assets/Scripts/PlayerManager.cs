@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Unity.VisualScripting;
+using Debug = UnityEngine.Debug;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -30,6 +30,7 @@ public class PlayerManager : MonoBehaviour
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -99,20 +100,22 @@ public class PlayerManager : MonoBehaviour
         // Camera follow
         if (mainCamera)
         {
-            mainCamera.transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, cameraPos.z);
+            mainCamera.transform.position =
+                new Vector3(playerTransform.position.x, playerTransform.position.y, cameraPos.z);
         }
+
         healthbar.SetHealth(HP);
 
         if (HP < 0)
         {
             HP = 0;
         }
-        if(HP > MaxHp)
+        if (HP > MaxHp)
         {
             HP = MaxHp;
         }
 
-        if(weaponPickup is not null && Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && weaponPickup != null)
         {
             PickupManager.PickUp(weaponPickup);
         }
@@ -122,15 +125,16 @@ public class PlayerManager : MonoBehaviour
     {
         Bounds colliderBounds = playerCollider.bounds;
         float colliderRadius = playerCollider.size.x * 0.4f * Mathf.Abs(base.transform.localScale.x);
-        Vector3 groundCheckPos = colliderBounds.min + new Vector3(colliderBounds.size.x * 0.5f, colliderRadius * 0.9f, 0);
+        Vector3 groundCheckPos =
+            colliderBounds.min + new Vector3(colliderBounds.size.x * 0.5f, colliderRadius * 0.9f, 0);
         // Check if player is grounded
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPos, colliderRadius);
-        
+
         //Check if any of the overlapping colliders are not player collider, if so, set isGrounded to true
         isGrounded = colliders.Any(x => x.gameObject.tag != "Player");
 
         // Apply movement velocity
-        playerRigidBody.velocity = new Vector2((moveDirection) * maxSpeed, playerRigidBody.velocity.y);
+        playerRigidBody.velocity = new Vector2(moveDirection * maxSpeed, playerRigidBody.velocity.y);
     }
 
     private void SetMoveDirection(float value)
@@ -154,7 +158,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D pickup)
     {
-        if(!pickup.gameObject.CompareTag("Pickup"))
+        if (!pickup.gameObject.CompareTag("Pickup"))
         {
             return;
         }
@@ -164,7 +168,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D pickup)
     {
-        if (!pickup.gameObject.CompareTag("Pickup"))
+        if (!pickup.GameObject().CompareTag("Pickup"))
         {
             return;
         }
