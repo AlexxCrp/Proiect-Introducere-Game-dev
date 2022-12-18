@@ -18,12 +18,13 @@ public class BaseEnemyController : MonoBehaviour
     Vector2 direction;
     Transform target;
     int layerMask;
+    private bool isDisabled;
 
     protected virtual void Start()
     {
         layerMask = LayerMask.GetMask("Player");
     }
-    
+
     protected virtual void Update()
     {
         //cast ray to player if in range of enemy
@@ -33,8 +34,7 @@ public class BaseEnemyController : MonoBehaviour
         //and in those cases a ray is a good solution
 
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
-        Vector2 targetPosition = target.position;
-        direction = targetPosition - (Vector2)transform.position;
+        direction = target.position - transform.position;
         RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, direction, range, layerMask);
 
         if (!rayInfo)
@@ -43,7 +43,9 @@ public class BaseEnemyController : MonoBehaviour
         }
 
         EnemyAbility(target);
-        if (Time.time - lastAttackTime >= fireCooldown)
+
+        bool canShoot = !isDisabled && (Time.time - lastAttackTime >= fireCooldown);
+        if (canShoot)
         {
             Shoot();
         }
@@ -73,13 +75,15 @@ public class BaseEnemyController : MonoBehaviour
         StartCoroutine(FlashRed());
         if (HP <= 0)
         {
+            Score.IncrementScore();
+
             Destroy(gameObject);
             SpawnHeart();
         }
 
         
 
-        Debug.Log("Enemy took damage: " + damage);
+        Debug.Log(string.Format("Enemy took damage: {0}", damage));
     }
 
     private void SpawnHeart()
@@ -96,5 +100,15 @@ public class BaseEnemyController : MonoBehaviour
         sprite.color = Color.red;
         yield return new WaitForSeconds(flashRedTime);
         sprite.color = Color.white;
+    }
+
+    public void Disable()
+    {
+        isDisabled = true;
+    }
+
+    public void Enable()
+    {
+        isDisabled = false;
     }
 }
