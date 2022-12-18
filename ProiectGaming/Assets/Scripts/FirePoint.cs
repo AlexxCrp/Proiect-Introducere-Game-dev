@@ -9,12 +9,13 @@ public class FirePoint : MonoBehaviour
 
     void Update()
     {
-        if (turret.rotation.z < -90 && turret.rotation.z > -270 && !gunFacingRight)
+        float z = turret.rotation.z;
+        if(!gunFacingRight && z.InInterval(-270, -90, false, false))
         {
             transform.Rotate(0f, 0f, 90f);
             gunFacingRight = true;
         }
-        if (turret.rotation.z < -270 && turret.rotation.z > -450 && gunFacingRight)
+        if(gunFacingRight && z.InInterval(-450, -270, false, false))
         {
             transform.Rotate(0f, 0f, 90f);
             gunFacingRight = false;

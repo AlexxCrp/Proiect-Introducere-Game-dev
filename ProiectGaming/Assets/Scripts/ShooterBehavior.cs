@@ -10,46 +10,38 @@ public class ShooterBehavior : MonoBehaviour
     public float speed = 15f;
     private bool gunFacingRight = true;
     public GameObject firePoint;
+    private SpriteRenderer _spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
         _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        _spriteRenderer = firePoint.GetComponent<SpriteRenderer>();
+        _spriteRenderer.flipX = gunFacingRight;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 direction;
         _mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-
-        if (_player.facingRight)
-        {
-            direction = _mousePos - transform.position;
-        }
-        else
-        {
-            direction = -(_mousePos - transform.position);
-        }
+        Vector2 direction = _mousePos - transform.position;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        angle %= 360;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed * Time.deltaTime);
+        
+        _spriteRenderer.flipY = angle.InInterval(90, 270) || angle.InInterval(-270,-90);
 
-
-        if (_player.facingRight && !gunFacingRight)
+        if (_player.hasFlipped)
         {
-            firePoint.transform.Rotate(0f, 180f, 0f);
-            gunFacingRight = true;
-            firePoint.GetComponent<SpriteRenderer>().flipX = true;
+            Flip();
         }
+    }
 
-        if (!_player.facingRight && gunFacingRight)
-        {
-            firePoint.transform.Rotate(0f, 180f, 0f);
-            firePoint.GetComponent<SpriteRenderer>().flipX = false;
-            gunFacingRight = false;
-        }
-
+    private void Flip()
+    {
+        gunFacingRight = !gunFacingRight;
+        _player.hasFlipped = false;
     }
 }
