@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     public enum GameState
     {
         Menu,
-        Playing
+        Playing,
+        GameOver
     }
 
     public static GameManager Instance { get; private set; }
@@ -28,6 +29,11 @@ public class GameManager : MonoBehaviour
             StartGame();
         }
 
+        if(gameState == GameState.GameOver&& Input.GetKey(KeyCode.Return))
+        {
+            OpenMenu();
+        }
+
         // Just some driver code to test
         // if (Input.GetKey(KeyCode.C))
         // {
@@ -44,5 +50,16 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.Playing;
         SceneManager.LoadSceneAsync("SampleScene");
+    }
+    private void OpenMenu()
+    {
+        gameState = GameState.Menu;
+        SceneManager.LoadSceneAsync("MenuScene");
+    }
+
+    public void OpenGameOver()
+    {
+        gameState = GameState.GameOver;
+        SceneManager.LoadSceneAsync("GameOverScene");
     }
 }

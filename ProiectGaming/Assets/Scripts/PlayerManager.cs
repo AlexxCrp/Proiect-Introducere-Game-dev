@@ -21,6 +21,7 @@ public class PlayerManager : MonoBehaviour
     Transform playerTransform;
     public Animator animator;
     public float cameraDisplacementY = 1.35f;
+    GameManager gameManager;
     /// <summary>
     /// Works as an observable. When set to true, turret consumes it (flips and resets to false).
     /// </summary>
@@ -30,6 +31,8 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        healthbar = GameObject.Find("Healthbar").GetComponent<Healthbar>();
+        gameManager = GameManager.Instance;
     }
 
     // Start is called before the first frame update
@@ -69,7 +72,6 @@ public class PlayerManager : MonoBehaviour
         {
             SetMoveDirection(-1);
 
-            // Change facing direction - Useful for future animation
             if (facingRight)
             {
                 Flip();
@@ -81,7 +83,6 @@ public class PlayerManager : MonoBehaviour
         {
             SetMoveDirection(1);
 
-            // Change facing direction - Useful for future animation
             if (!facingRight)
             {
                 Flip();
@@ -110,6 +111,7 @@ public class PlayerManager : MonoBehaviour
         if (HP < 0)
         {
             HP = 0;
+            gameManager.OpenGameOver();
         }
         if (HP > MaxHp)
         {
