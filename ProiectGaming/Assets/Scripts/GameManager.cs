@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
             StartGame();
         }
 
-        if(gameState == GameState.GameOver&& Input.GetKey(KeyCode.Return))
+        if(gameState == GameState.GameOver && Input.GetKey(KeyCode.Escape))
         {
             OpenMenu();
         }
