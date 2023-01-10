@@ -13,6 +13,7 @@ public class BaseEnemyController : MonoBehaviour
     public float fireCooldown;
     public Animator animator;
     public float flashRedTime;
+    bool isDead = false;
 
     protected float lastAttackTime = 0f;
     Vector2 direction;
@@ -27,12 +28,6 @@ public class BaseEnemyController : MonoBehaviour
 
     protected virtual void Update()
     {
-        //cast ray to player if in range of enemy
-        //while ray is cast shoot
-        //there are easier methods to just shoot when player is in range, using colliders,
-        //but we'll be keeping this code because some turrets will aim at players
-        //and in those cases a ray is a good solution
-
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
         direction = target.position - transform.position;
         RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, direction, range, layerMask);
@@ -49,6 +44,12 @@ public class BaseEnemyController : MonoBehaviour
         {
             Shoot();
         }
+        if (isDead)
+        {
+            Score.IncrementScore();
+            SpawnHeart();
+            Destroy(gameObject);
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -64,7 +65,7 @@ public class BaseEnemyController : MonoBehaviour
 
     public virtual void Shoot()
     {
-        Instantiate(bullet, firePoint.position, firePoint.rotation);
+        Instantiate(bullet, firePoint.position, Quaternion.Euler(0, firePoint.rotation.eulerAngles.y, firePoint.rotation.eulerAngles.z));
         lastAttackTime = Time.time;
     }
 
@@ -75,14 +76,8 @@ public class BaseEnemyController : MonoBehaviour
         StartCoroutine(FlashRed());
         if (HP <= 0)
         {
-            Score.IncrementScore();
-
-            Destroy(gameObject);
-            SpawnHeart();
+            StartCoroutine(Die());
         }
-
-        
-
         Debug.Log(string.Format("Enemy took damage: {0}", damage));
     }
 
@@ -100,6 +95,13 @@ public class BaseEnemyController : MonoBehaviour
         sprite.color = Color.red;
         yield return new WaitForSeconds(flashRedTime);
         sprite.color = Color.white;
+    }
+
+    public IEnumerator Die()
+    {
+        animator.Play("Explosion");
+        yield return new WaitForSeconds(1);
+        isDead = true;
     }
 
     public void Disable()
