@@ -34,6 +34,11 @@ public class GameManager : MonoBehaviour
             OpenMenu();
         }
 
+        if (gameState == GameState.Playing && Input.GetKey(KeyCode.P)) 
+        {
+            //LoadRandomScene() - Functie wip intai trebuie facute niste levels
+        }
+
         // Just some driver code to test
         // if (Input.GetKey(KeyCode.C))
         // {
