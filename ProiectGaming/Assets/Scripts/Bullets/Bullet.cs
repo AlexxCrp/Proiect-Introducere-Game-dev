@@ -9,6 +9,8 @@ public class Bullet
 
     public float Speed { get; set; } = 5f;
 
+    public float Lifetime { get; set; } = 3f;
+
     // Passive effect triggers on each shot
     public virtual void PassiveEffect(Transform firePoint)
     {

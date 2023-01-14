@@ -6,10 +6,22 @@ public class BaseEnemyBulletController : MonoBehaviour
 {
     public float speed = 20f;
     public float damage = 100;
+    public float lifetime = 3f;
     public Rigidbody2D rb;
+    private float bulletLifetimer;
     void Start()
     {
         rb.velocity = transform.right * speed;
+    }
+    
+    void Update()
+    {
+        bulletLifetimer += Time.deltaTime;
+
+        if (bulletLifetimer >= lifetime)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public virtual void BulletSpecialEffect()

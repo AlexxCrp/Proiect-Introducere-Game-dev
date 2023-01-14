@@ -9,6 +9,7 @@ public class BaseBulletController : MonoBehaviour
     private Bullet _bullet;
     [SerializeField] private Animator animator;
     private int _bulletLifetime = 5; // seconds
+    private float bulletLifetimer;
 
     // Start is called before the first frame update
     void Awake()
@@ -16,6 +17,16 @@ public class BaseBulletController : MonoBehaviour
         _bullet = BulletManager.Instance.GetBullet();
         _rb = gameObject.GetComponent<Rigidbody2D>();
         _rb.velocity = transform.right * _bullet.Speed;
+    }
+
+    void Update()
+    {
+        bulletLifetimer += Time.deltaTime;
+
+        if (bulletLifetimer >= _bullet.Lifetime)
+        {
+            DestroyBulletWithAnimation();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
