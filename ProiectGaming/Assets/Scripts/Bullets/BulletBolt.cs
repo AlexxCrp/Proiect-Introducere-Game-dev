@@ -11,6 +11,8 @@ public class BulletBolt : Bullet
         Speed = 10f;
     }
 
+    private const float EmpDuration = 3f;
+
     public override void OnHitEffect(BaseEnemyController enemy)
     {
         BulletManager.Instance.StartCoroutine(EMP(enemy));
@@ -19,7 +21,7 @@ public class BulletBolt : Bullet
     private IEnumerator EMP(BaseEnemyController enemy)
     {
         enemy.Disable();
-        yield return new WaitForSecondsRealtime(3f);
+        yield return new WaitForSecondsRealtime(EmpDuration);
         enemy.Enable();
     }
 }

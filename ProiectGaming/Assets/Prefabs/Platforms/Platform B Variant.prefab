@@ -87,5 +87,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform B Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5589545110150792462, guid: 009425feae8d7734fb1081d25cd6a83d, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 009425feae8d7734fb1081d25cd6a83d, type: 3}
