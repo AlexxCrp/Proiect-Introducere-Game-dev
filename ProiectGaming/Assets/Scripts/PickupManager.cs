@@ -18,7 +18,6 @@ public class PickupManager : MonoBehaviour
     {
         initialY = transform.position.y;
         StartCoroutine(PickupFloatingAnimation());
-        Debug.Log(initialY);
     }
 
     private IEnumerator PickupFloatingAnimation()
