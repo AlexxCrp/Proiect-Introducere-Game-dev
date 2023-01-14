@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PickupManager : MonoBehaviour
 {
+    private float initialY;
     public enum PickupType
     {
         WaveformPickup,
@@ -15,14 +16,16 @@ public class PickupManager : MonoBehaviour
     
     private void Start()
     {
+        initialY = transform.position.y;
         StartCoroutine(PickupFloatingAnimation());
+        Debug.Log(initialY);
     }
 
     private IEnumerator PickupFloatingAnimation()
     {
         while (true)
         {
-            transform.position = new Vector3(transform.position.x, Mathf.Sin(Time.time) * 0.5f, 0);
+            transform.position = new Vector3(transform.position.x, initialY + Mathf.Sin(Time.time) * 0.5f, 0);
             yield return null;
         }
     }
