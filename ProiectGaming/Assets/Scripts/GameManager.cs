@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     {
         Menu,
         Playing,
-        GameOver
+        GameOver,
+        Leaderboard
     }
 
     public static GameManager Instance { get; private set; }
@@ -31,18 +32,19 @@ public class GameManager : MonoBehaviour
 
         if(gameState == GameState.GameOver && Input.GetKey(KeyCode.Escape))
         {
+            ScoreManager.Instance.SaveToLeaderboard();
             OpenMenu();
         }
-
-        // Just some driver code to test
-        // if (Input.GetKey(KeyCode.C))
-        // {
-        //     ScoreManager.Instance.SaveToLeaderboard("asd");
-        // }
-        // if (Input.GetKey(KeyCode.X))
-        // {
-        //     ScoreManager.Instance.LoadLeaderboard();
-        // }
+        
+        if(gameState == GameState.Leaderboard && Input.GetKey(KeyCode.Escape))
+        {
+            OpenMenu();
+        }
+        
+        if(gameState == GameState.Menu && Input.GetKey(KeyCode.L))
+        {
+            OpenLeaderboard();
+        }
     }
 
     // To start a random scene, pass a random number to LoadScene
@@ -61,5 +63,10 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.GameOver;
         SceneManager.LoadSceneAsync("GameOverScene");
+    }
+    private void OpenLeaderboard()
+    {
+        gameState = GameState.Leaderboard;
+        SceneManager.LoadSceneAsync("LeaderboardScene");
     }
 }

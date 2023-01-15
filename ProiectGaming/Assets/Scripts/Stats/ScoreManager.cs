@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using UnityEngine;
 
@@ -28,9 +29,9 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    public void SaveToLeaderboard(String playerName)
+    public void SaveToLeaderboard()
     {
-        HighScoreEntry newHighScore = new HighScoreEntry(playerName, Score.Value);
+        HighScoreEntry newHighScore = new HighScoreEntry(DateTime.Now.ToString(CultureInfo.CurrentCulture), Score.Value);
         Leaderboard.Add(newHighScore);
 
         var json = JsonHelper.ToJson(Leaderboard.ToArray());

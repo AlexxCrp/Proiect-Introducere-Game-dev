@@ -6,13 +6,13 @@ using UnityEngine;
 [Serializable]
 public class HighScoreEntry
 {
-    public String Name;
+    public String Date;
 
     public int Score;
-
-    public HighScoreEntry(string name, int score)
+    
+    public HighScoreEntry(String date, int score)
     {
-        Name = name;
+        Date = date;
         Score = score;
     }
 }

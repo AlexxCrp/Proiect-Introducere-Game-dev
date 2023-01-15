@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - Pickup
   - HUD
+  - Environment
   layers:
   - Default
   - TransparentFX
