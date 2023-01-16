@@ -6,7 +6,7 @@ using Debug = UnityEngine.Debug;
 public class PlayerManager : MonoBehaviour
 {
     public float HP = 1000f;
-    public float MaxHp = 1000f;
+    public float maxHp = 1000f;
     public Healthbar healthbar;
     public float maxSpeed = 3.4f;
     public float jumpHeight = 6.5f;
@@ -22,6 +22,8 @@ public class PlayerManager : MonoBehaviour
     public Animator animator;
     public float cameraDisplacementY = 1.35f;
     GameManager gameManager;
+    bool godMode = false;
+    float godHP = 1000000f;
     /// <summary>
     /// Works as an observable. When set to true, turret consumes it (flips and resets to false).
     /// </summary>
@@ -58,6 +60,22 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //God Mode logic
+        bool keyIsG = Input.GetKey(KeyCode.G);
+
+        if (keyIsG && !godMode)
+        {
+            godMode = true;
+        }
+        else if (keyIsG && godMode)
+        {
+            godMode = false;
+        }
+        if (godMode)
+        {
+            HP = godHP;
+        }
+
         if (isGrounded || playerRigidBody.velocity.magnitude < 0.01f)
         {
             moveDirection = 0;
@@ -113,9 +131,9 @@ public class PlayerManager : MonoBehaviour
             HP = 0;
             gameManager.OpenGameOver();
         }
-        if (HP > MaxHp)
+        if (HP > maxHp & !godMode)
         {
-            HP = MaxHp;
+            HP = maxHp;
         }
 
         if (Input.GetKeyDown(KeyCode.E) && weaponPickup != null)

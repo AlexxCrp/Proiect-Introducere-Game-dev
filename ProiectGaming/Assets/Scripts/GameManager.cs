@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviour
         {
             OpenLeaderboard();
         }
+
+        if (gameState == GameState.Playing && Input.GetKey(KeyCode.P)) 
+        {
+            //LoadRandomScene() - Functie wip intai trebuie facute niste levels
+        }
     }
 
     // To start a random scene, pass a random number to LoadScene

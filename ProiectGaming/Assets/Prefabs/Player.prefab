@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 1000
-  MaxHp: 1000
+  maxHp: 1000
   healthbar: {fileID: 0}
   maxSpeed: 7
   jumpHeight: 12
