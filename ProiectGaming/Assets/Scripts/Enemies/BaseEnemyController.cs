@@ -44,12 +44,12 @@ public class BaseEnemyController : MonoBehaviour
         {
             Shoot();
         }
-        if (isDead)
-        {
-            Score.IncrementScore();
-            SpawnHeart();
-            Destroy(gameObject);
-        }
+        // if (isDead)
+        // {
+        //     Score.IncrementScore();
+        //     SpawnHeart();
+        //     Destroy(gameObject);
+        // }
     }
 
     private void OnDrawGizmosSelected()
@@ -76,7 +76,10 @@ public class BaseEnemyController : MonoBehaviour
         StartCoroutine(FlashRed());
         if (HP <= 0)
         {
-            StartCoroutine(Die());
+            // StartCoroutine(Die());
+            Destroy(gameObject);
+            Score.IncrementScore();
+            SpawnHeart();
         }
         Debug.Log(string.Format("Enemy took damage: {0}", damage));
     }

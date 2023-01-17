@@ -8,7 +8,7 @@ public class GameOverScreenScore : MonoBehaviour
     public void Start()
     {
         textScor = GetComponent<Text>();
-        textScor.text = string.Format("Your score was: {0}", Score.Value);   
+        textScor.text = "Your score was: " + Score.Value;
         Score.ResetScore();
     }
 }

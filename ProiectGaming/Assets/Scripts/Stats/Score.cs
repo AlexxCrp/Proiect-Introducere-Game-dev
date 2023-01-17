@@ -19,11 +19,11 @@ public class Score : MonoBehaviour
     public static void ScoreDisplay()
     {
         scoreText.text = Value.ToString();
-        
     }
 
     public void Start()
     {
         scoreText = GetComponent<Text>();
+        ScoreDisplay();
     }
 }

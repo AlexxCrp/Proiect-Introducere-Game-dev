@@ -13,8 +13,6 @@ public class GameManager : MonoBehaviour
         Leaderboard
     }
 
-    public Object Player;    
-
     public static GameManager Instance { get; private set; }
 
     public GameState gameState;
@@ -72,9 +70,7 @@ public class GameManager : MonoBehaviour
     }
     public void OpenNextLevel(string level)
     {
-        SceneManager.LoadSceneAsync("Level2");
-        BulletManager.BulletType prevBullet = BulletManager.Instance.bulletType;
-        Instantiate(Player, new Vector3(11, -1.5f, 0), new Quaternion());
+        SceneManager.LoadSceneAsync(level);
     }
     private void OpenLeaderboard()
     {
