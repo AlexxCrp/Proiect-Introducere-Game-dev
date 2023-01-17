@@ -3209,6 +3209,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5875345120166623927, guid: 0747b0109d099224e9b19863173c942c, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1912032667}
     - target: {fileID: 5875345121787707442, guid: 0747b0109d099224e9b19863173c942c, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3257,6 +3261,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Background Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5875345122058356349, guid: 0747b0109d099224e9b19863173c942c, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1912032667}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0747b0109d099224e9b19863173c942c, type: 3}
 --- !u!1001 &1375794610
