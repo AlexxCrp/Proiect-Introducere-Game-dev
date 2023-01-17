@@ -33,7 +33,6 @@ public class BaseEnemyBulletController : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Environment"))
         {
-            Debug.Log("aaa");
             Destroy(gameObject);
             return;
         }

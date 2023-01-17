@@ -5,9 +5,9 @@ public class Bullet
 {
     public float Damage { get; set; } = 100f;
 
-    public float FireRate { get; set; } = 0.35f;
+    public float FireRate { get; set; } = 0.4f;
 
-    public float Speed { get; set; } = 5f;
+    public float Speed { get; set; } = 15f;
 
     public float Lifetime { get; set; } = 3f;
 

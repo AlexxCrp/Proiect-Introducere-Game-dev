@@ -1,8 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +12,8 @@ public class GameManager : MonoBehaviour
         GameOver,
         Leaderboard
     }
+
+    public Object Player;    
 
     public static GameManager Instance { get; private set; }
 
@@ -71,7 +72,9 @@ public class GameManager : MonoBehaviour
     }
     public void OpenNextLevel(string level)
     {
-        SceneManager.LoadSceneAsync(level);
+        SceneManager.LoadSceneAsync("Level2");
+        BulletManager.BulletType prevBullet = BulletManager.Instance.bulletType;
+        Instantiate(Player, new Vector3(11, -1.5f, 0), new Quaternion());
     }
     private void OpenLeaderboard()
     {

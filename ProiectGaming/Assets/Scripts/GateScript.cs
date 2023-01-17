@@ -9,6 +9,7 @@ public class GateScript : MonoBehaviour
         if(collider.gameObject.CompareTag("Player"))
         {
             string level = Random.Range(1,7).ToString();
+            Debug.Log(level);
             level = "Level" + level;
 
             GameManager.Instance.OpenNextLevel(level);

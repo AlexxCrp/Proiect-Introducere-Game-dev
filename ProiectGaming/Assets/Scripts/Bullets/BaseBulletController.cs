@@ -8,7 +8,6 @@ public class BaseBulletController : MonoBehaviour
     public Rigidbody2D _rb;
     private Bullet _bullet;
     [SerializeField] private Animator animator;
-    private int _bulletLifetime = 5; // seconds
     private float bulletLifetimer;
 
     // Start is called before the first frame update

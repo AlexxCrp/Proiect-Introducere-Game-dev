@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 051f6526c7c1f544bb51eb71aacb94b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 1000
+  HP: 1500
   sprite: {fileID: 6536819634715104830}
   range: 15
   gun: {fileID: 6536819634715104825}

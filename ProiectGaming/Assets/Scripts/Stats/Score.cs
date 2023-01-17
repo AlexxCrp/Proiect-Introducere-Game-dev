@@ -11,6 +11,10 @@ public class Score : MonoBehaviour
         Value++;
         ScoreDisplay();
     }
+    public static void ResetScore()
+    {
+        Value = 0;
+    }
 
     public static void ScoreDisplay()
     {

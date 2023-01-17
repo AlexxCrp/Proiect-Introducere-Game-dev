@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BulletCrossed : Bullet
 {
-    private static readonly float PoisonDamage = 10f;
+    private static readonly float PoisonDamage = 50f;
 
     private static readonly int MaxPoisonStacks = 5;
     private static readonly int MaxPoisonTicks = 5;

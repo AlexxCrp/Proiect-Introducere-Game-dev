@@ -4,9 +4,10 @@ public class BulletCharged : Bullet
 {
     public BulletCharged()
     {
-        Damage = 100f;
+        Damage = 150f;
         FireRate = 1f;
         Speed = 10f;
+        Lifetime = 0.5f;
     }
 
     public override void PassiveEffect(Transform firePoint)

@@ -20,7 +20,7 @@ public class PlayerManager : MonoBehaviour
     CapsuleCollider2D playerCollider;
     Transform playerTransform;
     public Animator animator;
-    public float cameraDisplacementY = 1.35f;
+    public float cameraDisplacementY = 10f;
     GameManager gameManager;
     bool godMode = false;
     float godHP = 1000000f;
