@@ -31,10 +31,18 @@ public class BaseEnemyBulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
+        if (collider.gameObject.CompareTag("Environment"))
+        {
+            Debug.Log("aaa");
+            Destroy(gameObject);
+            return;
+        }
+
         if (!collider.gameObject.CompareTag("Player"))
         {
             return;
         }
+        
         PlayerManager character = collider.GetComponent<PlayerManager>();
         if (character != null)
         {

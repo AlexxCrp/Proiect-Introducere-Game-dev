@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     private void StartGame()
     {
         gameState = GameState.Playing;
-        SceneManager.LoadSceneAsync("SampleScene");
+        SceneManager.LoadSceneAsync("Level1");
     }
     private void OpenMenu()
     {
@@ -69,9 +69,14 @@ public class GameManager : MonoBehaviour
         gameState = GameState.GameOver;
         SceneManager.LoadSceneAsync("GameOverScene");
     }
+    public void OpenNextLevel(string level)
+    {
+        SceneManager.LoadSceneAsync(level);
+    }
     private void OpenLeaderboard()
     {
         gameState = GameState.Leaderboard;
         SceneManager.LoadSceneAsync("LeaderboardScene");
     }
+
 }
