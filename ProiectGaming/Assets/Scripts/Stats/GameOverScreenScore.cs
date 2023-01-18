@@ -9,6 +9,7 @@ public class GameOverScreenScore : MonoBehaviour
     {
         textScor = GetComponent<Text>();
         textScor.text = "Your score was: " + Score.Value;
+        ScoreManager.Instance.SaveToLeaderboard();
         Score.ResetScore();
     }
 }

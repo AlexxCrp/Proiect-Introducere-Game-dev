@@ -19,18 +19,28 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
+        // if (File.Exists(LeaderboardSaveFilePath))
+        // {
+        //     LoadLeaderboard();
+        //     Debug.Log("Laoded");
+        // }
+        // else
+        // {
+        //     Leaderboard = new List<HighScoreEntry>();
+        // }
+    }
+
+    public void SaveToLeaderboard()
+    {
         if (File.Exists(LeaderboardSaveFilePath))
         {
-            LoadLeaderboard();
+            Leaderboard = LoadLeaderboard();
         }
         else
         {
             Leaderboard = new List<HighScoreEntry>();
         }
-    }
-
-    public void SaveToLeaderboard()
-    {
+        
         HighScoreEntry newHighScore = new HighScoreEntry(DateTime.Now.ToString(CultureInfo.CurrentCulture), Score.Value);
         Leaderboard.Add(newHighScore);
 

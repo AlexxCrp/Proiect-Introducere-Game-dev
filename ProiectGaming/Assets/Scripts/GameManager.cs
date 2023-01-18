@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
 
         if(gameState == GameState.GameOver && Input.GetKey(KeyCode.Escape))
         {
-            ScoreManager.Instance.SaveToLeaderboard();
             OpenMenu();
         }
         
