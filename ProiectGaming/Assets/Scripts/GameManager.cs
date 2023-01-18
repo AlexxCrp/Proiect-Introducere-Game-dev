@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Object = UnityEngine.Object;
 
 public class GameManager : MonoBehaviour
 {
@@ -45,9 +44,11 @@ public class GameManager : MonoBehaviour
             OpenLeaderboard();
         }
 
-        if (gameState == GameState.Playing && Input.GetKey(KeyCode.P)) 
+        if (Input.GetKey(KeyCode.P)) 
         {
-            //LoadRandomScene() - Functie wip intai trebuie facute niste levels
+            string level = UnityEngine.Random.Range(1, 7).ToString();
+            level = "Level" + level;
+            OpenNextLevel(level);
         }
     }
 
